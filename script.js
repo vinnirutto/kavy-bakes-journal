@@ -1,5 +1,4 @@
 /*======================================
- /*======================================
         KAVY BAKES FLIPBOOK
 ======================================*/
 
@@ -65,6 +64,26 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Flipbook initialized.");
 
 });
-    /*==============================
-        BIRTHDAY GALLERY
-    ==============================*/
+/*==============================
+    BIRTHDAY IMAGE FLIP
+==============================*/
+
+const birthdayImages = document.querySelectorAll(".birthday-image");
+
+let birthdayIndex = 0;
+
+setInterval(() => {
+
+    birthdayImages[birthdayIndex].classList.remove("active");
+
+    birthdayIndex++;
+
+    if (birthdayIndex >= birthdayImages.length) {
+
+        birthdayIndex = 0;
+
+    }
+
+    birthdayImages[birthdayIndex].classList.add("active");
+
+},3000);
