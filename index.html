@@ -4,258 +4,728 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Kavy Bakes | Sweet Chapters</title>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- =====================================================
+         PREMIUM EDITORIAL FONTS
+    ====================================================== -->
+<!-- KAVY BAKES ORIGINAL FONTS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
 
-    <!-- PageFlip CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/page-flip/dist/css/page-flip.css">
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- =====================================================
+         KAVY BAKES STYLES
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css">
 
 </head>
 
+
 <body>
 
-    <!-- =========================
-         BOOK WRAPPER
-    ========================== -->
-<main id="book-wrapper">
+    <div class="site">
 
-    <div id="book">
+        <!-- =========================
+             BOOK
+        ========================== -->
 
-        <!-- COVER -->
-        <div class="page cover">
+        <div class="book-wrapper">
 
-            <div class="cover-content">
+            <div class="book" id="book">
 
-                <img src="images/cake.jpg" class="cover-image" alt="Kavy Bakes">
 
-                <span class="badge">Homemade • Premium • Fresh</span>
+                <!-- COVER -->
 
-                <h1>Kavy Bakes</h1>
+                <!-- =====================================================
+     KAVY BAKES JOURNAL — COVER
+===================================================== -->
 
-                <h3>Sweet Chapters</h3>
+<div class="page cover" data-page="0">
 
-                <p>Every celebration begins with a masterpiece.</p>
+    <div class="cover-image">
+        <img
+            src="images/caleb.jpeg"
+            alt="Homemade cake by Kavy Bakes">
+    </div>
 
-                <a href="https://wa.me/254702361521" class="cover-btn">
+    <div class="cover-overlay"></div>
 
-                    <i class="fab fa-whatsapp"></i>
+    <div class="cover-content">
 
-                    Order on WhatsApp
-
-                </a>
-
-            </div>
-
+        <div class="cover-small">
+            KAVY BAKES
         </div>
 
-        <!-- WELCOME -->
-        <div class="page welcome">
+        <h1>
+            Kavy Bakes
+            <span>Journal</span>
+        </h1>
 
-            <div class="welcome-card">
+        <div class="cover-line"></div>
 
-                <span class="welcome-badge">Welcome to Kavy Bakes</span>
-
-                <h2>Where Every Cake Tells a Story</h2>
-
-                <img src="images/caleb.jpeg" class="welcome-image" alt="Cake">
-
-                <blockquote>
-                    "Every celebration deserves a masterpiece crafted with love."
-                </blockquote>
-
-                <p>
-                    At Kavy Bakes, every cake is handmade to create unforgettable memories.
-                </p>
-
-                <a href="https://wa.me/254702361521" class="welcome-btn">
-
-                    <i class="fab fa-whatsapp"></i>
-
-                    Start Ordering
-
-                </a>
-
-            </div>
-
-        </div>
-
-        <!-- OVERVIEW -->
-        <div class="page overview">
-
-            <h2>Our Collections</h2>
-
-            <div class="collection-list">
-                 
-
-                <div>Birthday Cakes</div>
-
-                <div>Wedding Cakes</div>
-
-                <div>Graduation Cakes</div>
-
-                <div>Baby Shower</div>
-
-                <div>Anniversary</div>
-
-                <div>Surprise Packages</div>
-
-                <div>Corporate Cakes</div>
-
-                <div>Holiday Collection</div>
-
-                <div>Gallery</div>
-
-            </div>
-
-        </div>
-        
-
-         <!-- birthday -->
-        <!--==============================
-        BIRTHDAY PAGE
-===============================-->
-
-<div class="page birthday">
-
-    <div class="birthday-card">
-
-        <span class="birthday-badge">
-            Birthday Collection
-        </span>
-
-        <h2>Birthday Cakes</h2>
-
-        <div class="birthday-flip">
-
-            <img src="images/BC1.jpeg" class="birthday-image active" alt="Birthday Cake 1">
-
-            <img src="images/BC2.jpeg" class="birthday-image" alt="Birthday Cake 2">
-
-            <img src="images/BC3.jpeg" class="birthday-image" alt="Birthday Cake 3">
-
-        </div>
-
-        <p>
-
-            Beautiful handcrafted birthday cakes
-            made to create unforgettable celebrations.
-
+        <p class="cover-message">
+            Homemade cakes,
+            <br>
+            made with love.
         </p>
 
-        <a href="https://wa.me/254XXXXXXXXX"
-           class="birthday-btn">
+        <p class="cover-note">
+            little moments • sweet memories
+        </p>
 
-            <i class="fab fa-whatsapp"></i>
+        <button class="open-btn" onclick="nextPage()">
+            OPEN THE JOURNAL
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
 
-            Order on WhatsApp
+    </div>
 
-        </a>
+    <div class="cover-footer">
+        <span>01</span>
+        <span>Sweet Chapters</span>
+    </div>
+
+</div>
+
+
+                <!-- BIRTHDAY -->
+
+               <!-- =========================================================
+     BIRTHDAY PAGE
+========================================================= -->
+
+<div class="page" data-page="1">
+
+    <div class="page-inner category">
+
+        <!-- BIRTHDAY IMAGE SLIDER -->
+        <div class="photo birthday-slider">
+
+            <div class="birthday-slides">
+
+                <img
+                    src="images/hbd.jpeg"
+                    class="birthday-image active"
+                    alt="Kavy Bakes Birthday Cake 1">
+
+                <img
+                    src="images/BC1.jpeg"
+                    class="birthday-image"
+                    alt="Kavy Bakes Birthday Cake 2">
+
+                <img
+                    src="images/BC3.jpeg"
+                    class="birthday-image"
+                    alt="Kavy Bakes Birthday Cake 3">
+
+            </div>
+
+            <!-- SLIDER INDICATORS -->
+            <div class="birthday-dots">
+
+                <span
+                    class="birthday-dot active">
+                </span>
+
+                <span
+                    class="birthday-dot">
+                </span>
+
+                <span
+                    class="birthday-dot">
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- BIRTHDAY INFORMATION -->
+        <div class="details">
+
+            <span class="number">
+                01
+            </span>
+
+            <span class="eyebrow">
+                CELEBRATE THE MOMENT
+            </span>
+
+            <h2>
+                Birthday
+            </h2>
+
+            <div class="line"></div>
+
+            <p>
+                Beautiful birthday cakes created
+                to make their special day even
+                more memorable.
+            </p>
+
+            <button
+                class="order-btn"
+                onclick="orderWhatsApp('Birthday Cake')">
+
+                <i class="fa-brands fa-whatsapp"></i>
+
+                Order on WhatsApp
+
+            </button>
+
+        </div>
 
     </div>
 
 </div>
-        <!-- WEDDING -->
-        <div class="page wedding">
 
-            <h2>Wedding Cakes</h2>
 
-        </div>
+                <!-- WEDDING -->
 
-        <!-- GRADUATION -->
-        <div class="page graduation">
+               <!-- =========================================================
+     WEDDING PAGE
+========================================================= -->
 
-            <h2>Graduation Cakes</h2>
+<div class="page" data-page="2">
 
-        </div>
+    <div class="page-inner category">
 
-        <!-- BABY -->
-        <div class="page baby">
+        <!-- ================================================
+             WEDDING PHOTO STACK
+        ================================================= -->
 
-            <h2>Baby Shower Cakes</h2>
+        <div class="photo wedding-stack">
 
-        </div>
+            <!-- BACK PHOTO -->
+            <div class="wedding-card wedding-card-3">
 
-        <!-- ANNIVERSARY -->
-        <div class="page anniversary">
+                <img
+                    src="images/w3.jpeg"
+                    alt="Kavy Bakes wedding cake">
 
-            <h2>Anniversary Cakes</h2>
+            </div>
 
-        </div>
 
-        <!-- SURPRISE -->
-        <div class="page surprise">
+            <!-- MIDDLE PHOTO -->
+            <div class="wedding-card wedding-card-2">
 
-            <h2>Surprise Packages</h2>
+                <img
+                    src="images/w2.jpeg"
+                    alt="Kavy Bakes wedding cake">
 
-        </div>
+            </div>
 
-        <!-- CORPORATE -->
-        <div class="page corporate">
 
-            <h2>Corporate Cakes</h2>
+            <!-- FRONT PHOTO -->
+            <div class="wedding-card wedding-card-1">
 
-        </div>
+                <img
+                    src="images/w1.jpeg"
+                    alt="Kavy Bakes wedding cake">
 
-        <!-- HOLIDAY -->
-        <div class="page holiday">
+            </div>
 
-            <h2>Holiday Collection</h2>
 
-        </div>
+            <!-- PHOTO NUMBER -->
+            <div class="wedding-counter">
 
-        <!-- GALLERY -->
-        <div class="page gallery">
+                <span class="wedding-current">
+                    01
+                </span>
 
-            <h2>Gallery</h2>
+                <span>
+                    / 03
+                </span>
 
-        </div>
-
-        <!-- ABOUT -->
-        <div class="page about">
-
-            <h2>About Kavy Bakes</h2>
-
-        </div>
-
-        <!-- CONTACT -->
-        <div class="page contact">
-
-            <h2>Contact Us</h2>
+            </div>
 
         </div>
 
-        <!-- BACK COVER -->
-        <div class="page back-cover">
 
-            <h2>Thank You ❤️</h2>
+        <!-- ================================================
+             DETAILS
+        ================================================= -->
+
+        <div class="details">
+
+            <span class="number">
+                02
+            </span>
+
+            <span class="eyebrow">
+                MADE FOR BEAUTIFUL BEGINNINGS
+            </span>
+
+            <h2>
+                Wedding
+            </h2>
+
+            <div class="line"></div>
+
+            <p>
+                Elegant homemade wedding cakes,
+                thoughtfully created for beautiful
+                moments worth remembering.
+            </p>
+
+            <button
+                class="order-btn"
+                onclick="orderWhatsApp('Wedding Cake')">
+
+                <i class="fa-brands fa-whatsapp"></i>
+
+                Order on WhatsApp
+
+            </button>
 
         </div>
 
     </div>
 
-</main>
+</div>
+                <!-- GRADUATION -->
 
-<a href="#" id="whatsapp-btn">
+                <div class="page" data-page="3">
 
-    <i class="fab fa-whatsapp"></i>
+                    <div class="page-inner category">
 
-</a>
+                        <div class="photo">
 
-<script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
-<script src="script.js"></script>
+                            <img
+                                src="images/graduation1.jpg"
+                                alt="Graduation cake">
+
+                        </div>
+
+                        <div class="details">
+
+                            <span class="number">
+                                03
+                            </span>
+
+                            <span class="eyebrow">
+                                CELEBRATE SUCCESS
+                            </span>
+
+                            <h2>
+                                Graduation
+                            </h2>
+
+                            <div class="line"></div>
+
+                            <p>
+                                Celebrate hard work and achievement
+                                with a cake made for the occasion.
+                            </p>
+
+                            <button
+                                class="order-btn"
+                                onclick="orderWhatsApp('Graduation Cake')">
+
+                                <i class="fa-brands fa-whatsapp"></i>
+
+                                Order on WhatsApp
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BABY SHOWER -->
+
+                <div class="page" data-page="4">
+
+                    <div class="page-inner category">
+
+                        <div class="photo">
+
+                            <img
+                                src="images/baby1.jpg"
+                                alt="Baby shower cake">
+
+                        </div>
+
+                        <div class="details">
+
+                            <span class="number">
+                                04
+                            </span>
+
+                            <span class="eyebrow">
+                                A LITTLE MIRACLE
+                            </span>
+
+                            <h2>
+                                Baby Shower
+                            </h2>
+
+                            <div class="line"></div>
+
+                            <p>
+                                Sweet creations for welcoming
+                                a beautiful new chapter.
+                            </p>
+
+                            <button
+                                class="order-btn"
+                                onclick="orderWhatsApp('Baby Shower Cake')">
+
+                                <i class="fa-brands fa-whatsapp"></i>
+
+                                Order on WhatsApp
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ANNIVERSARY -->
+
+                <div class="page" data-page="5">
+
+                    <div class="page-inner category">
+
+                        <div class="photo">
+
+                            <img
+                                src="images/anv.jpeg"
+                                alt="Anniversary cake">
+
+                        </div>
+
+                        <div class="details">
+
+                            <span class="number">
+                                05
+                            </span>
+
+                            <span class="eyebrow">
+                                CELEBRATE LOVE
+                            </span>
+
+                            <h2>
+                                Anniversary
+                            </h2>
+
+                            <div class="line"></div>
+
+                            <p>
+                                Sweet creations for celebrating
+                                another beautiful chapter together.
+                            </p>
+
+                            <button
+                                class="order-btn"
+                                onclick="orderWhatsApp('Anniversary Cake')">
+
+                                <i class="fa-brands fa-whatsapp"></i>
+
+                                Order on WhatsApp
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SURPRISE -->
+
+                <div class="page" data-page="6">
+
+                    <div class="page-inner category">
+
+                        <div class="photo">
+
+                            <img
+                                src="images/surprise1.jpg"
+                                alt="Surprise cake">
+
+                        </div>
+
+                        <div class="details">
+
+                            <span class="number">
+                                06
+                            </span>
+
+                            <span class="eyebrow">
+                                MAKE THEM SMILE
+                            </span>
+
+                            <h2>
+                                Surprise
+                            </h2>
+
+                            <div class="line"></div>
+
+                            <p>
+                                Turn an ordinary day into a
+                                memory they will never forget.
+                            </p>
+
+                            <button
+                                class="order-btn"
+                                onclick="orderWhatsApp('Surprise Package')">
+
+                                <i class="fa-brands fa-whatsapp"></i>
+
+                                Order on WhatsApp
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CORPORATE -->
+
+                <div class="page" data-page="7">
+
+                    <div class="page-inner category">
+
+                        <div class="photo">
+
+                            <img
+                                src="images/corporate1.jpg"
+                                alt="Corporate cake">
+
+                        </div>
+
+                        <div class="details">
+
+                            <span class="number">
+                                07
+                            </span>
+
+                            <span class="eyebrow">
+                                BUSINESS MOMENTS
+                            </span>
+
+                            <h2>
+                                Corporate
+                            </h2>
+
+                            <div class="line"></div>
+
+                            <p>
+                                Make celebrations, launches and
+                                milestones a little sweeter.
+                            </p>
+
+                            <button
+                                class="order-btn"
+                                onclick="orderWhatsApp('Corporate Order')">
+
+                                <i class="fa-brands fa-whatsapp"></i>
+
+                                Order on WhatsApp
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HOLIDAY -->
+
+                <div class="page" data-page="8">
+
+                    <div class="page-inner category">
+
+                        <div class="photo">
+
+                            <img
+                                src="images/holiday1.jpg"
+                                alt="Holiday cake">
+
+                        </div>
+
+                        <div class="details">
+
+                            <span class="number">
+                                08
+                            </span>
+
+                            <span class="eyebrow">
+                                SWEET SEASONS
+                            </span>
+
+                            <h2>
+                                Holiday
+                            </h2>
+
+                            <div class="line"></div>
+
+                            <p>
+                                Festive creations made for
+                                bringing everyone together.
+                            </p>
+
+                            <button
+                                class="order-btn"
+                                onclick="orderWhatsApp('Holiday Cake')">
+
+                                <i class="fa-brands fa-whatsapp"></i>
+
+                                Order on WhatsApp
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FINAL PAGE -->
+
+                <div class="page final-page" data-page="9">
+
+                    <div class="page-inner final-inner">
+
+                        <span class="ornament">
+                            ✦
+                        </span>
+
+                        <span class="eyebrow">
+                            YOUR MOMENT STARTS HERE
+                        </span>
+
+                        <h2>
+                            Let's Create
+                            <br>
+                            Something Sweet
+                        </h2>
+
+                        <div class="line"></div>
+
+                        <p>
+                            Have a special occasion coming up?
+                            Tell Kavy Bakes what you're imagining
+                            and let's create something beautiful.
+                        </p>
+
+                        <button
+                            class="order-btn big"
+                            onclick="orderWhatsApp('General Inquiry')">
+
+                            <i class="fa-brands fa-whatsapp"></i>
+
+                            Order on WhatsApp
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             CONTROLS
+        ========================== -->
+
+        <div class="controls">
+
+            <button
+                id="prevBtn"
+                onclick="previousPage()">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                PREVIOUS
+
+            </button>
+
+
+            <div class="counter">
+
+                <span id="currentPage">
+                    01
+                </span>
+
+                <span class="counter-line"></span>
+
+                <span>
+                    10
+                </span>
+
+            </div>
+
+
+            <button
+                id="nextBtn"
+                onclick="nextPage()">
+
+                NEXT
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             WHATSAPP
+        ========================== -->
+
+        <button
+            class="floating-whatsapp"
+            onclick="orderWhatsApp('General Inquiry')"
+            aria-label="WhatsApp">
+
+            <i class="fa-brands fa-whatsapp"></i>
+
+        </button>
+
+    </div>
+
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>

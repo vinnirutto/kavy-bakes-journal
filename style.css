@@ -1,1633 +1,2642 @@
-/*======================================================
-        KAVY BAKES | SWEET CHAPTERS
-        PART 1
-======================================================*/
+/* =========================================================
+   KAVY BAKES JOURNAL
+   FULL RESPONSIVE FLIP BOOK
+   ========================================================= */
 
-/*==============================
-        RESET
-==============================*/
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+    --cream: #fff8f2;
+    --cream-dark: #f4e7dc;
+
+    --brown: #4a281c;
+    --chocolate: #3b241a;
+    --espresso: #2f1d16;
+
+    --terracotta: #c95f38;
+    --terracotta-dark: #a94b2c;
+
+    --text: #3a241b;
+    --muted: #806c60;
+
+    --line: rgba(74, 40, 28, .18);
 }
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 
 html,
-body{
-
-    width:100%;
-    height:100%;
-
-    font-family:'Poppins',sans-serif;
-
-    background:#E9DFD3;
-
-    overflow:hidden;
-
-}
-
-/*==============================
-        ROOT VARIABLES
-==============================*/
-
-:root{
-
-    --primary:#4A2C2A;
-    --secondary:#FFF8F0;
-    --accent:#D4AF37;
-    --white:#FFFFFF;
-    --text:#555555;
-    --shadow:0 15px 40px rgba(0,0,0,.18);
-
-}
-
-/*==============================
-        TYPOGRAPHY
-==============================*/
-
-h1,
-h2,
-h3,
-h4{
-
-    font-family:'Playfair Display',serif;
-
-    color:var(--primary);
-
-}
-
-p{
-
-    color:var(--text);
-
-    line-height:1.8;
-
-}
-
-/*==============================
-        BOOK WRAPPER
-==============================*/
-
-#book-wrapper{
-
-    width:100%;
-
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    padding:20px;
-
-    overflow:hidden;
-
-}
-
-/*==============================
-        PAGEFLIP BOOK
-==============================*/
-
-#book{
-
-    width:min(95vw,1200px);
-
-    height:min(92vh,800px);
-
-    margin:auto;
-
-}
-
-/*==============================
-        PAGE
-==============================*/
-
-.page{
-
-    width:100%;
-
-    height:100%;
-
-    padding:clamp(20px,3vw,60px);
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    flex-direction:column;
-
-}
-
-/*==============================
-        COMMON PAGE CONTENT
-==============================*/
-
-.page-content{
-
-    width:100%;
-
-    height:100%;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-    padding:40px;
-
-}
-
-.page h1{
-
-    font-size:3.5rem;
-
-    margin-bottom:15px;
-
-}
-
-.page h2{
-
-    font-size:2.4rem;
-
-    margin-bottom:15px;
-
-}
-
-.page h3{
-
-    font-size:1.4rem;
-
-    margin-bottom:10px;
-
-}
-
-.page p{
-
-    font-size:1rem;
-
-    max-width:90%;
-
-}
-
-/*==============================
-        PAGE BACKGROUNDS
-==============================*/
-
-.cover{
-
-    background:linear-gradient(135deg,#5B352E,#3A201C);
-
-}
-
-.welcome{
-
-    background:#FFFDF8;
-
-}
-
-.overview{
-
-    background:#FFFAF3;
-
-}
-
-.birthday{
-
-    background:#FFFDF9;
-
-}
-
-.wedding{
-
-    background:#FFFDF8;
-
-}
-
-.graduation{
-
-    background:#FFFDF9;
-
-}
-
-.baby{
-
-    background:#FFFDF8;
-
-}
-
-.anniversary{
-
-    background:#FFFDF9;
-
-}
-
-.surprise{
-
-    background:#FFFDF8;
-
-}
-
-.corporate{
-
-    background:#FFFDF9;
-
-}
-
-.holiday{
-
-    background:#FFFDF8;
-
-}
-
-.gallery{
-
-    background:#FFFDF9;
-
-}
-
-.about{
-
-    background:#FFFDF8;
-
-}
-
-.contact{
-
-    background:#FFFDF9;
-
-}
-
-.back-cover{
-
-    background:#3B241F;
-
-}
-/*======================================================
-            COVER PAGE
-======================================================*/
-
-/*==============================
-        COVER LAYOUT
-==============================*/
-/*======================================================
-                    RESPONSIVE COVER PAGE
-======================================================*/
-
-.cover{
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    background:linear-gradient(
-        135deg,
-        #5B352E 0%,
-        #4A2C2A 45%,
-        #2F1B18 100%
-    );
-
-    color:#fff;
-
-}
-
-.cover-content{
-
-    width:100%;
-    height:100%;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:space-evenly;
-    align-items:center;
-
-    text-align:center;
-
-    padding:clamp(18px,3vw,40px);
-
-}
-
-/*==============================
-        IMAGE
-==============================*/
-
-.cover-image{
-
-    width:clamp(130px,30vw,220px);
-
-    aspect-ratio:1/1;
-
-    object-fit:cover;
-
-    border-radius:50%;
-
-    border:4px solid #D4AF37;
-
-}
-
-/*==============================
-        BADGE
-==============================*/
-
-.badge{
-
-    padding:8px 18px;
-
-    border-radius:50px;
-
-    border:2px solid #D4AF37;
-
-    background:rgba(255,255,255,.12);
-
-    color:#FFD700;
-
-    font-size:clamp(.7rem,1.5vw,.9rem);
-
-    font-weight:600;
-
-}
-
-/*==============================
-        TITLE
-==============================*/
-
-.cover h1{
-
-    font-family:"Playfair Display",serif;
-
-    font-size:clamp(2rem,5vw,4rem);
-
-    color:#fff;
-
-    margin:0;
-
-}
-
-.cover h3{
-
-    font-family:"Playfair Display",serif;
-
-    font-size:clamp(1.2rem,2vw,2rem);
-
-    color:#FFD700;
-
-    margin:0;
-
-}
-
-.cover p{
-
-    width:90%;
-
-    color:#fff;
-
-    font-size:clamp(.85rem,1.5vw,1.1rem);
-
-    line-height:1.7;
-
-    margin:0;
-
-}
-
-/*==============================
-      WHATSAPP BUTTON
-==============================*/
-
-.cover-btn{
-
-    width:min(90%,280px);
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:10px;
-
-    padding:14px 20px;
-
-    text-decoration:none;
-
-    border-radius:50px;
-
-    background:#4A2C2A;
-
-    color:#fff;
-
-    border:2px solid #D4AF37;
-
-    font-size:clamp(.85rem,1.4vw,1rem);
-
-    font-weight:600;
-
-    transition:.3s;
-
-}
-
-.cover-btn i{
-
-    color:#D4AF37;
-
-    font-size:1.2rem;
-
-}
-
-.cover-btn:hover{
-
-    background:#6A4029;
-
-    transform:translateY(-3px);
-
-}
-
-/*==============================
-          MOBILE
-==============================*/
-
-@media(max-width:768px){
-
-    .cover-content{
-
-        justify-content:space-around;
-
-        padding:20px;
-
-    }
-
-    .cover-image{
-
-        width:160px;
-
-    }
-
-}
-
-@media(max-width:480px){
-
-    .cover-content{
-
-        padding:16px;
-
-    }
-
-    .cover-image{
-
-        width:135px;
-
-    }
-
-}
-/*======================================================
-                WELCOME PAGE
-======================================================*/
-
-/*======================================================
-                    WELCOME PAGE
-======================================================*/
-
-.welcome {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body {
     width: 100%;
     height: 100%;
-    padding: clamp(8px, 2%, 16px);
-    box-sizing: border-box;
-    background: linear-gradient(180deg, #FFFDF8, #FFF5E8);
+}
+
+
+html {
     overflow: hidden;
 }
 
-.welcome-card {
+
+body {
     width: 100%;
-    max-width: 440px;
-    height: 100%;
-    max-height: 100%;
-    background: #ffffff;
-    border: 2px solid #E8C36B;
-    border-radius: clamp(10px, 2.5vw, 16px);
-    padding: clamp(10px, 2.5vw, 18px);
+    height: 100dvh;
+
+    overflow: hidden;
+
+    font-family: "Poppins", sans-serif;
+
+    color: var(--text);
+
+    background:
+        linear-gradient(
+            135deg,
+            #eadbd0 0%,
+            #f5e9df 48%,
+            #e6d4c8 100%
+        );
+}
+
+
+/* =========================================================
+   MAIN SITE
+========================================================= */
+
+.site {
+    width: 100%;
+    height: 100dvh;
+
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+
     align-items: center;
-    text-align: center;
-    gap: clamp(4px, 1.5vw, 10px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    box-sizing: border-box;
+    justify-content: center;
+
+    padding: clamp(5px, 1.5vw, 20px);
+}
+
+
+/* =========================================================
+   BOOK WRAPPER
+========================================================= */
+
+.book-wrapper {
+    position: relative;
+
+    width: min(94vw, 1450px);
+
+    height: min(80dvh, 850px);
+
+    min-height: 500px;
+
+    perspective: 2200px;
+}
+
+
+/* =========================================================
+   BOOK
+========================================================= */
+
+.book {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    transform-style: preserve-3d;
+
+    box-shadow:
+        0 30px 70px rgba(48, 28, 20, .22),
+        0 8px 20px rgba(48, 28, 20, .10);
+}
+
+
+/* =========================================================
+   ALL PAGES
+========================================================= */
+
+.page {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: var(--cream);
+
+    border:
+        1px solid
+        rgba(74, 40, 28, .25);
+
+    transform-origin: left center;
+
+    transform-style: preserve-3d;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    transition:
+        transform .85s
+        cubic-bezier(.77, 0, .175, 1);
+
+    will-change: transform;
+
+    isolation: isolate;
+}
+
+
+.page.flipped {
+    transform: rotateY(-180deg);
+}
+
+
+/* =========================================================
+   PAGE STACK
+========================================================= */
+
+.page[data-page="0"] { z-index: 20; }
+.page[data-page="1"] { z-index: 19; }
+.page[data-page="2"] { z-index: 18; }
+.page[data-page="3"] { z-index: 17; }
+.page[data-page="4"] { z-index: 16; }
+.page[data-page="5"] { z-index: 15; }
+.page[data-page="6"] { z-index: 14; }
+.page[data-page="7"] { z-index: 13; }
+.page[data-page="8"] { z-index: 12; }
+.page[data-page="9"] { z-index: 11; }
+
+
+/* =========================================================
+   NORMAL PAGE PAPER
+========================================================= */
+
+.page:not(.cover):not(.final-page) {
+    background-color: var(--cream);
+
+    background-image:
+        radial-gradient(
+            rgba(74, 40, 28, .025) .55px,
+            transparent .6px
+        );
+
+    background-size: 7px 7px;
+}
+
+
+/* =========================================================
+   PAGE INNER
+========================================================= */
+
+.page-inner {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    padding:
+        clamp(34px, 5vw, 70px);
+
     overflow: hidden;
 }
 
-/* Badge */
-.welcome-badge {
-    padding: 4px 12px;
-    border-radius: 40px;
-    background: #FFF3DA;
-    color: #8B5E34;
-    font-size: clamp(0.65rem, 1.8vw, 0.75rem);
-    font-weight: 600;
-    line-height: 1;
+
+/* =========================================================
+   PAGE BRAND
+========================================================= */
+
+.page:not(.cover)::before {
+    content: "KAVY BAKES";
+
+    position: absolute;
+
+    top: clamp(15px, 2.5vw, 25px);
+    left: clamp(20px, 3vw, 38px);
+
+    z-index: 5;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 7px;
+
+    font-weight: 500;
+
+    letter-spacing: .28em;
+
+    color:
+        rgba(74, 40, 28, .55);
 }
 
-/* Title */
-.welcome-card h2 {
-    font-family: "Playfair Display", serif;
-    font-size: clamp(1.1rem, 3.2vw, 1.5rem);
-    color: #4A2C2A;
-    line-height: 1.2;
-    margin: 0;
-}
 
-/* Image */
-.welcome-image {
+/* =========================================================
+   =========================================================
+   COVER PAGE
+   =========================================================
+========================================================= */
+
+.cover {
+    position: absolute;
+
+    inset: 0;
+
     width: 100%;
-    max-width: 260px;
-    aspect-ratio: 16 / 9;
-    height: auto;
-    max-height: 22vh;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: #3a241b;
+
+    color: #fff8f2;
+
+    border:
+        1px solid
+        rgba(74, 40, 28, .35);
+}
+
+
+/* =========================================================
+   FULL SCREEN COVER IMAGE
+========================================================= */
+
+.cover-image {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 0;
+
+    overflow: hidden;
+}
+
+
+.cover-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
     object-fit: cover;
+
     object-position: center;
-    border-radius: 10px;
-    border: 2px solid #D4AF37;
-    flex-shrink: 1;
+
+    filter:
+        brightness(.70)
+        saturate(.94)
+        contrast(.98);
+
+    transform: scale(1.01);
 }
 
-/* Quote */
-.welcome-card blockquote {
-    font-family: "Playfair Display", serif;
-    font-size: clamp(0.72rem, 2vw, 0.88rem);
-    color: #7A4D2A;
-    font-style: italic;
-    margin: 0;
-    line-height: 1.3;
-}
 
-/* Description */
-.welcome-card p {
+/* =========================================================
+   COVER DARK OVERLAY
+========================================================= */
+
+.cover-overlay {
+    position: absolute;
+
+    inset: 0;
+
     width: 100%;
-    max-width: 380px;
-    font-size: clamp(0.7rem, 1.8vw, 0.82rem);
-    color: #666666;
-    line-height: 1.35;
-    margin: 0;
+    height: 100%;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+
+            rgba(35, 22, 16, .88) 0%,
+
+            rgba(35, 22, 16, .70) 28%,
+
+            rgba(35, 22, 16, .42) 52%,
+
+            rgba(35, 22, 16, .18) 72%,
+
+            rgba(35, 22, 16, .08) 100%
+        );
 }
 
-/* Button */
-.welcome-btn {
+
+/* =========================================================
+   COVER CONTENT
+========================================================= */
+
+.cover-content {
+    position: relative;
+
+    z-index: 3;
+
     width: 100%;
-    max-width: 220px;
-    padding: clamp(8px, 1.5vw, 10px) 16px;
-    display: inline-flex;
+    height: 100%;
+
+    padding:
+        clamp(35px, 6vw, 80px);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
     justify-content: center;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    background: #4A2C2A;
-    color: #ffffff;
-    border: 2px solid #D4AF37;
-    border-radius: 50px;
-    font-size: clamp(0.75rem, 1.8vw, 0.85rem);
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   COVER SMALL TEXT
+========================================================= */
+
+.cover-small {
+    margin-bottom: 16px;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size:
+        clamp(8px, .7vw, 10px);
+
+    font-weight: 500;
+
+    letter-spacing: .25em;
+
+    text-transform: uppercase;
+
+    color: #e6c7b5;
+}
+
+
+/* =========================================================
+   COVER TITLE
+========================================================= */
+
+.cover h1 {
+    margin: 0;
+
+    max-width: 650px;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size:
+        clamp(58px, 8vw, 115px);
+
+    font-weight: 700;
+
+    line-height: .86;
+
+    letter-spacing: -.065em;
+
+    color: #fff8f2;
+
+    text-shadow:
+        0 4px 18px
+        rgba(0,0,0,.28);
+}
+
+
+/* =========================================================
+   JOURNAL WORD
+========================================================= */
+
+.cover h1 span {
+    display: block;
+
+    margin-top: 8px;
+
+    margin-left:
+        clamp(20px, 3vw, 48px);
+
+    color: #e39a7d;
+
+    font-size: .68em;
+
     font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-sizing: border-box;
-    flex-shrink: 0;
-}
-
-.welcome-btn i {
-    color: #D4AF37;
-}
-
-.welcome-btn:hover {
-    background: #6A4029;
-}
-
-.welcome-btn:active {
-    transform: scale(0.98);
-}
-/*======================================================
-                OVERVIEW PAGE
-======================================================*/
-
-.overview{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:linear-gradient(
-        180deg,
-        #FFFDF8 0%,
-        #FFF7EC 100%
-    );
-
-}
-
-.overview-card{
-
-    width:88%;
-
-    height:88%;
-
-    background:#fff;
-
-    border:3px solid #E8C36B;
-
-    border-radius:25px;
-
-    padding:18px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    text-align:center;
-
-    justify-content:flex-start;
-
-    overflow:hidden;
-
-}
-
-/* Badge */
-
-.overview-badge{
-
-    background:#FFF3D8;
-
-    color:#8B5E34;
-
-    padding:8px 18px;
-
-    border-radius:40px;
-
-    font-size:.8rem;
-
-    font-weight:600;
-
-    margin-bottom:12px;
-
-}
-
-/* Title */
-
-.overview-card h2{
-
-    font-size:2rem;
-
-    margin-bottom:12px;
-
-    color:#4A2C2A;
-
-}
-
-/* Text */
-
-.overview-text{
-
-    width:90%;
-
-    font-size:.95rem;
-
-    color:#666;
-
-    line-height:1.6;
-
-    margin-bottom:18px;
-
-}
-
-/*==============================
-        SMALL IMAGE
-==============================*/
-.overview-image{
-
-    width:72%;
-
-    height:120px;
-
-    object-fit:cover;
-
-    object-position:center;
-
-    border-radius:18px;
-
-    border:3px solid #D4AF37;
-
-    margin:10px 0 15px;
-
-}
-/*==============================
-        COLLECTION GRID
-==============================*/
-.collection-list{
-
-    width:100%;
-
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:8px;
-
-    margin-bottom:15px;
-
-}
-.collection-list div{
-
-    padding:8px;
-
-    border-radius:12px;
-
-    background:#FFF8EE;
-
-    border:2px solid #E8C36B;
-
-    font-size:.82rem;
-
-    font-weight:600;
-
-}
-
-.collection-list div:hover{
-
-    background:#D4AF37;
-
-    color:#fff;
-
-    transform:translateY(-3px);
-
-}
-
-/* Footer */
-
-.overview-next{
-
-    margin-top:8px;
-
-    font-size:.85rem;
-
-    font-weight:600;
-
-    color:#8B5E34;
-
-}
-
-/*==============================
-        TABLET
-==============================*/
-
-@media(max-width:768px){
-
-.overview-card{
-
-    width:94%;
-
-    padding:18px;
-
-}
-
-.overview-image{
-
-    height:150px;
-
-}
-
-}
-
-/*==============================
-        MOBILE
-==============================*/
-
-@media(max-width:480px){
-
-.overview-card{
-
-    width:96%;
-
-    padding:15px;
-
-}
-
-.overview-card h2{
-
-    font-size:1.6rem;
-
-}
-
-.overview-image{
-
-    width:85%;
-
-    height:130px;
-
-}
-
-.collection-list{
-
-    grid-template-columns:1fr;
-
-}
-
-.collection-list div{
-
-    padding:9px;
-
-    font-size:.85rem;
-
-}
-
-}
-/*======================================================
-                BIRTHDAY PAGE
-======================================================*/
-
-/*==============================
-        PAGE LAYOUT
-==============================*/
-
-.birthday{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:linear-gradient(
-        180deg,
-        #FFFDF9 0%,
-        #FFF4E8 100%
-    );
-
-}
-
-/*==============================
-        CONTAINER
-==============================*/
-
-.birthday-content{
-
-    width:90%;
-
-    height:100%;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:flex-start;
-
-    padding:25px 0;
-
-}
-
-/*==============================
-        TITLE
-==============================*/
-
-.birthday-title{
-
-    font-family:"Playfair Display",serif;
-
-    font-size:2.2rem;
-
-    color:#4A2C2A;
-
-    margin-bottom:10px;
-
-}
-
-/*==============================
-        DIVIDER
-==============================*/
-
-.birthday-divider{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    width:100%;
-
-    margin-bottom:18px;
-
-}
-
-.birthday-divider::before,
-.birthday-divider::after{
-
-    content:"";
-
-    flex:1;
-
-    height:2px;
-
-    background:#D4AF37;
-
-}
-
-.birthday-divider i{
-
-    margin:0 15px;
-
-    color:#D4AF37;
-
-    font-size:1rem;
-
-}
-
-/*==============================
-        IMAGE
-==============================*/
-
-.birthday-gallery{
-
-    width:100%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    margin-bottom:18px;
-
-}
-
-.birthday-image{
-
-    width:88%;
-
-    height:430px;
-
-    object-fit:cover;
-
-    object-position:center;
-
-    border-radius:25px;
-
-    border:4px solid #D4AF37;
-
-    box-shadow:0 15px 35px rgba(0,0,0,.18);
-
-}
-
-/*==============================
-        HEART
-==============================*/
-
-.birthday-heart{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    width:100%;
-
-    margin-bottom:18px;
-
-}
-
-.birthday-heart::before,
-.birthday-heart::after{
-
-    content:"";
-
-    flex:1;
-
-    height:2px;
-
-    background:#D4AF37;
-
-}
-
-.birthday-heart i{
-
-    margin:0 15px;
-
-    color:#E63946;
-
-    font-size:1.2rem;
 
-}
-
-/*==============================
-        WHATSAPP BUTTON
-==============================*/
-
-.birthday-order{
-
-    width:88%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:12px;
-
-    text-decoration:none;
-
-    background:#4A2C2A;
-
-    color:#fff;
-
-    padding:16px;
-
-    border-radius:50px;
-
-    border:3px solid #D4AF37;
-
-    font-weight:600;
-
-    font-size:1rem;
-
-    transition:.35s;
-
-}
-
-.birthday-order i{
-
-    color:#25D366;
-
-    font-size:1.3rem;
-
-}
-
-.birthday-order:hover{
-
-    background:#6F4A2F;
-
-    transform:translateY(-3px);
-
-}
-
-/*==============================
-        TABLET
-==============================*/
-
-@media(max-width:768px){
-
-    .birthday-title{
-
-        font-size:1.8rem;
-
-    }
-
-    .birthday-image{
-
-        width:92%;
-
-        height:360px;
-
-    }
-
-    .birthday-order{
-
-        width:92%;
-
-    }
-
-}
-
-/*==============================
-        MOBILE
-==============================*/
-
-@media(max-width:480px){
-
-    .birthday-content{
-
-        padding:18px 0;
-
-    }
-
-    .birthday-title{
-
-        font-size:1.5rem;
-
-    }
-
-    .birthday-image{
-
-        width:95%;
-
-        height:300px;
-
-    }
-
-    .birthday-order{
-
-        width:95%;
-
-        padding:14px;
-
-        font-size:.95rem;
-
-    }
-
-}
-/*======================================================
-        PREMIUM CAKE PAGE TEMPLATE
-======================================================*/
-
-/*==============================
-        PAGE LAYOUT
-==============================*/
-
-.wedding,
-.graduation,
-.baby,
-.anniversary,
-.surprise,
-.corporate,
-.holiday{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:linear-gradient(
-        180deg,
-        #FFFDF9 0%,
-        #FFF5E8 100%
-    );
-
-}
-
-/*==============================
-        CONTENT
-==============================*/
-
-.wedding-content,
-.graduation-content,
-.baby-content,
-.anniversary-content,
-.surprise-content,
-.corporate-content,
-.holiday-content{
-
-    width:90%;
-
-    height:100%;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:flex-start;
-
-    align-items:center;
-
-    padding:25px 0;
-
-}
-
-/*==============================
-        TITLES
-==============================*/
-
-.wedding-title,
-.graduation-title,
-.baby-title,
-.anniversary-title,
-.surprise-title,
-.corporate-title,
-.holiday-title{
-
-    font-family:"Playfair Display",serif;
-
-    font-size:2.2rem;
-
-    color:#4A2C2A;
-
-    margin-bottom:10px;
-
-}
-
-/*==============================
-        GOLD DIVIDER
-==============================*/
-
-.page-divider{
-
-    width:100%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    margin-bottom:18px;
-
-}
-
-.page-divider::before,
-.page-divider::after{
-
-    content:"";
-
-    flex:1;
-
-    height:2px;
-
-    background:#D4AF37;
-
-}
-
-.page-divider i{
-
-    margin:0 15px;
-
-    color:#D4AF37;
-
-    font-size:1rem;
-
-}
-
-/*==============================
-        IMAGE
-==============================*/
+    line-height: 1;
 
-.page-gallery{
-
-    width:100%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    margin-bottom:18px;
-
-}
-
-.page-image{
-
-    width:88%;
-
-    height:430px;
-
-    object-fit:cover;
-
-    object-position:center;
-
-    border-radius:25px;
-
-    border:4px solid #D4AF37;
-
-    box-shadow:0 18px 40px rgba(0,0,0,.18);
-
-}
-
-/*==============================
-        HEART DIVIDER
-==============================*/
-
-.page-heart{
-
-    width:100%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    margin-bottom:18px;
-
-}
-
-.page-heart::before,
-.page-heart::after{
-
-    content:"";
-
-    flex:1;
-
-    height:2px;
-
-    background:#D4AF37;
-
-}
-
-.page-heart i{
-
-    margin:0 15px;
-
-    color:#E63946;
-
-    font-size:1.15rem;
-
-}
-
-/*==============================
-        WHATSAPP BUTTON
-==============================*/
-
-.page-order{
-
-    width:88%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:12px;
-
-    padding:16px;
-
-    text-decoration:none;
-
-    border-radius:50px;
-
-    background:#4A2C2A;
-
-    color:#fff;
-
-    border:3px solid #D4AF37;
-
-    font-weight:600;
-
-    transition:.35s;
-
-}
-
-.page-order i{
-
-    color:#25D366;
-
-    font-size:1.3rem;
-
-}
-
-.page-order:hover{
-
-    background:#6A4029;
-
-    transform:translateY(-3px);
-
-}
-
-/*==============================
-        TABLET
-==============================*/
-
-@media(max-width:768px){
-
-.page-image{
-
-    width:92%;
-
-    height:360px;
-
-}
-
-.page-order{
-
-    width:92%;
-
-}
-
-.wedding-title,
-.graduation-title,
-.baby-title,
-.anniversary-title,
-.surprise-title,
-.corporate-title,
-.holiday-title{
-
-    font-size:1.8rem;
-
-}
-
-}
-
-/*==============================
-        MOBILE
-==============================*/
-
-@media(max-width:480px){
-
-.page-image{
-
-    width:95%;
-
-    height:300px;
-
-}
-
-.page-order{
-
-    width:95%;
-
-    padding:14px;
-
-    font-size:.95rem;
-
-}
-
-.wedding-title,
-.graduation-title,
-.baby-title,
-.anniversary-title,
-.surprise-title,
-.corporate-title,
-.holiday-title{
-
-    font-size:1.5rem;
-
+    letter-spacing: -.04em;
 }
 
-}
-/*======================================================
-                BIRTHDAY PAGE
-======================================================*/
 
-.birthday{
+/* =========================================================
+   COVER LINE
+========================================================= */
 
-    display:flex;
+.cover-line {
+    width: 65px;
 
-    justify-content:center;
+    height: 2px;
 
-    align-items:center;
+    margin:
+        25px 0 18px;
 
-    background:#FFF9F2;
+    background:
+        #d77d5e;
 
+    border-radius: 10px;
 }
-
-.birthday-card{
 
-    width:92%;
 
-    height:94%;
+/* =========================================================
+   COVER MESSAGE
+========================================================= */
 
-    padding:22px;
+.cover-message {
+    max-width: 350px;
 
-    background:#fff;
+    margin: 0;
 
-    border:3px solid #D4AF37;
+    font-family: "Poppins", sans-serif;
 
-    border-radius:25px;
+    font-size:
+        clamp(10px, .9vw, 13px);
 
-    display:flex;
+    font-weight: 300;
 
-    flex-direction:column;
+    line-height: 1.8;
 
-    justify-content:space-evenly;
+    color: #f0ddd1;
 
-    align-items:center;
-
-    text-align:center;
-
-    box-shadow:0 15px 35px rgba(0,0,0,.12);
-
+    text-shadow:
+        0 2px 8px
+        rgba(0,0,0,.25);
 }
-
-.birthday-badge{
 
-    padding:8px 18px;
 
-    background:#FFF3DA;
+/* =========================================================
+   COVER NOTE
+========================================================= */
 
-    color:#8B5E34;
+.cover-note {
+    margin-top: 16px;
 
-    border-radius:40px;
+    font-family: "Poppins", sans-serif;
 
-    font-size:.8rem;
+    font-size: 11px;
 
-    font-weight:600;
+    font-weight: 500;
 
-}
-
-.birthday-card h2{
-
-    font-family:"Playfair Display",serif;
+    color: #e6aa94;
 
-    font-size:2rem;
-
-    color:#4A2C2A;
-
+    transform: rotate(-1deg);
 }
 
-.birthday-flip{
 
-    position:relative;
+/* =========================================================
+   OPEN JOURNAL BUTTON
+========================================================= */
 
-    width:100%;
+.cover .open-btn {
+    display: inline-flex;
 
-    max-width:320px;
+    align-items: center;
+    justify-content: center;
 
-    aspect-ratio:4/3;
+    gap: 8px;
 
-    perspective:1000px;
-
-}
+    margin-top: 28px;
 
-.birthday-image{
+    padding:
+        12px 20px;
 
-    position:absolute;
+    border:
+        1px solid
+        rgba(255,255,255,.65);
 
-    inset:0;
+    border-radius: 25px;
 
-    width:100%;
+    background:
+        rgba(48, 28, 20, .35);
 
-    height:100%;
+    color:
+        #fff8f2;
 
-    object-fit:cover;
+    font-family:
+        "Poppins",
+        sans-serif;
 
-    border-radius:20px;
+    font-size: 8px;
 
-    border:4px solid #D4AF37;
+    font-weight: 500;
 
-    backface-visibility:hidden;
+    letter-spacing: .12em;
 
-    transform:rotateY(180deg);
+    cursor: pointer;
 
-    opacity:0;
+    backdrop-filter: blur(4px);
 
     transition:
-        transform .8s ease,
-        opacity .8s ease;
+        .3s ease;
+}
+
+
+.cover .open-btn:hover {
+    background:
+        #c95f38;
+
+    border-color:
+        #c95f38;
+
+    transform:
+        translateY(-2px);
+}
+
+
+.cover .open-btn i {
+    color:
+        #e5a18a;
+}
+
+
+.cover .open-btn:hover i {
+    color:
+        #ffffff;
+}
+
+
+/* =========================================================
+   COVER FOOTER
+========================================================= */
+
+.cover-footer {
+    position: absolute;
+
+    z-index: 4;
+
+    left:
+        clamp(20px, 4vw, 45px);
+
+    right:
+        clamp(20px, 4vw, 45px);
+
+    bottom:
+        clamp(15px, 2.5vw, 28px);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 7px;
+
+    font-weight: 500;
+
+    letter-spacing: .16em;
+
+    text-transform: uppercase;
+
+    color:
+        rgba(255,248,242,.70);
+}
+
+
+/* =========================================================
+   CATEGORY PAGES
+========================================================= */
+
+.category {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.05fr)
+        minmax(280px, .75fr);
+
+    align-items: center;
+
+    gap:
+        clamp(35px, 6vw, 95px);
+
+    padding:
+        clamp(35px, 5vw, 65px)
+        clamp(35px, 6vw, 85px);
+}
+
+
+/* =========================================================
+   PHOTO FRAME
+========================================================= */
+
+.photo {
+    position: relative;
+
+    width: min(100%, 620px);
+    aspect-ratio: 4 / 3;
+
+    justify-self: center;
+
+    padding: 7px;
+
+    background: #fff;
+
+    border:
+        1px solid
+        rgba(74, 40, 28, .55);
+
+    box-shadow:
+        7px 8px 0
+        rgba(90, 56, 40, .07),
+
+        0 18px 35px
+        rgba(43, 33, 28, .13);
+
+    transform: rotate(-1deg);
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+
+/* =========================================================
+   NORMAL SINGLE IMAGE
+========================================================= */
+
+.photo > img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    filter:
+        saturate(.95)
+        contrast(.97);
+}
+
+
+/* =========================================================
+   BIRTHDAY SLIDER FRAME
+========================================================= */
+
+.birthday-slider {
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SLIDER IMAGE AREA
+========================================================= */
+
+.birthday-slides {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   BIRTHDAY IMAGES
+========================================================= */
+
+.birthday-image {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    opacity: 0;
+
+    transform:
+        translateX(35px)
+        scale(1.01);
+
+    filter:
+        saturate(.95)
+        contrast(.97);
+
+    transition:
+        opacity .75s ease,
+        transform .75s ease;
+}
+
+
+/* =========================================================
+   ACTIVE BIRTHDAY IMAGE
+========================================================= */
+
+.birthday-image.active {
+    opacity: 1;
+
+    transform:
+        translateX(0)
+        scale(1);
+}
+
+
+/* =========================================================
+   FRAME INNER BORDER
+========================================================= */
+
+.photo::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 9px;
+
+    z-index: 20;
+
+    border:
+        1px solid
+        rgba(74, 40, 28, .13);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   BIRTHDAY SLIDER DOTS
+========================================================= */
+
+.birthday-dots {
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 16px;
+
+    z-index: 30;
+
+    transform:
+        translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    padding:
+        6px 9px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(45, 27, 20, .35);
+
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
+}
+
+
+/* =========================================================
+   DOT
+========================================================= */
+
+.birthday-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, .55);
+
+    transition:
+        all .3s ease;
+}
+
+
+/* =========================================================
+   ACTIVE DOT
+========================================================= */
+
+.birthday-dot.active {
+    width: 18px;
+
+    border-radius: 10px;
+
+    background:
+        #ffffff;
+}
+
+
+/* =========================================================
+   PHOTO HOVER
+========================================================= */
+
+.photo:hover {
+    transform:
+        rotate(-.3deg)
+        translateY(-5px)
+        scale(1.012);
+
+    box-shadow:
+        8px 10px 0
+        rgba(90, 56, 40, .08),
+
+        0 24px 40px
+        rgba(43, 33, 28, .17);
+}
+
+
+/* =========================================================
+   BIRTHDAY SLIDER HOVER
+========================================================= */
+
+.birthday-slider:hover {
+    transform:
+        rotate(-.3deg)
+        translateY(-5px)
+        scale(1.012);
+}
+
+
+/* =========================================================
+   ALTERNATING IMAGE ANGLES
+========================================================= */
+
+.page[data-page="2"] .photo,
+.page[data-page="4"] .photo,
+.page[data-page="6"] .photo,
+.page[data-page="8"] .photo {
+
+    transform:
+        rotate(1deg);
+}
+
+
+.page[data-page="2"] .photo:hover,
+.page[data-page="4"] .photo:hover,
+.page[data-page="6"] .photo:hover,
+.page[data-page="8"] .photo:hover {
+
+    transform:
+        rotate(.3deg)
+        translateY(-5px)
+        scale(1.012);
+}
+
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+.details {
+    width: 100%;
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    padding:
+        10px 0;
+}
+
+
+/* =========================================================
+   NUMBER
+========================================================= */
+
+.number {
+    position: relative;
+
+    padding-left: 27px;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 500;
+
+    letter-spacing: .3em;
+
+    color:
+        var(--terracotta);
+}
+
+
+.number::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: 18px;
+    height: 1px;
+
+    background:
+        var(--terracotta);
+}
+
+
+/* =========================================================
+   CATEGORY TITLE
+========================================================= */
+
+.details h2 {
+    margin-top: 13px;
+
+    max-width: 100%;
+
+    font-family:
+        "Italiana",
+        serif;
+
+    font-size:
+        clamp(48px, 5.5vw, 82px);
+
+    font-weight: 400;
+
+    line-height: .9;
+
+    letter-spacing: -.035em;
+
+    color:
+        var(--espresso);
+
+    overflow-wrap:
+        break-word;
+}
+
+
+/* =========================================================
+   LINE
+========================================================= */
+
+.line {
+    width: 70px;
+
+    height: 1px;
+
+    margin:
+        18px 0;
+
+    background:
+        var(--terracotta);
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.details p {
+    width: 100%;
+
+    max-width: 370px;
+
+    margin-bottom: 19px;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size:
+        clamp(10px, .85vw, 13px);
+
+    font-weight: 400;
+
+    line-height: 1.8;
+
+    color:
+        var(--muted);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .photo {
+        width: min(100%, 520px);
+    }
+
+    .birthday-dots {
+        bottom: 13px;
+    }
+}
+
+
+/* =========================================================
+   PHONE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .photo {
+        width: min(92%, 420px);
+
+        aspect-ratio: 4 / 3;
+
+        padding: 6px;
+    }
+
+
+    .birthday-image {
+        object-fit: cover;
+    }
+
+
+    .birthday-dots {
+        bottom: 10px;
+
+        gap: 5px;
+
+        padding:
+            5px 8px;
+    }
+
+
+    .birthday-dot {
+        width: 5px;
+        height: 5px;
+    }
+
+
+    .birthday-dot.active {
+        width: 15px;
+    }
+
+
+    .details {
+        padding:
+            2px 5px 4px;
+
+        align-items: center;
+
+        text-align: center;
+    }
+
+
+    .number {
+        padding-left: 0;
+
+        font-size: 7px;
+
+        letter-spacing: .22em;
+    }
+
+
+    .number::before {
+        display: none;
+    }
+
+
+    .details h2 {
+        margin-top: 5px;
+
+        font-size:
+            clamp(36px, 12vw, 55px);
+    }
+
+
+    .line {
+        width: 48px;
+
+        margin:
+            8px auto;
+    }
+
+
+    .details p {
+        max-width: 290px;
+
+        margin-bottom: 8px;
+
+        font-size: 9px;
+
+        line-height: 1.55;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media (max-width: 390px) {
+
+    .photo {
+        width: 90%;
+
+        padding: 5px;
+    }
+
+
+    .birthday-dots {
+        bottom: 8px;
+    }
+
+
+    .details h2 {
+        font-size:
+            clamp(33px, 12vw, 48px);
+    }
+
+
+    .details p {
+        max-width: 250px;
+
+        font-size: 8px;
+    }
+}
+/* =========================================================
+   WEDDING — REAL PHOTOGRAPH STACK
+========================================================= */
+
+.wedding-stack {
+
+    position: relative;
+
+    width: min(100%, 560px);
+
+    aspect-ratio: 4 / 3;
+
+    margin: auto;
+
+    background: transparent;
+
+    border: none;
+
+    box-shadow: none;
+
+    padding: 0;
+
+    overflow: visible;
+
+    cursor: pointer;
+
+    transform: rotate(-1deg);
+
+    z-index: 10;
+}
+
+
+/* =========================================================
+   EVERY PHOTOGRAPH
+========================================================= */
+
+.wedding-card {
+
+    position: absolute;
+
+    inset: 0;
+
+    padding: 8px;
+
+    background: #fff;
+
+    border:
+        1px solid
+        rgba(74,40,28,.45);
+
+    box-sizing: border-box;
+
+    box-shadow:
+        6px 7px 0
+        rgba(90,56,40,.07),
+
+        0 18px 32px
+        rgba(43,33,28,.14);
+
+    transition:
+        transform .8s cubic-bezier(.22,.61,.36,1),
+        opacity .5s ease;
+
+    transform-origin: center center;
+}
+
+
+/* =========================================================
+   IMAGES
+========================================================= */
+
+.wedding-card img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+}
+
+
+/* =========================================================
+   BACK IMAGE
+========================================================= */
+
+.wedding-card-3 {
+
+    z-index: 1;
+
+    transform:
+        rotate(5deg)
+        translate(25px, 15px);
+}
+
+
+/* =========================================================
+   MIDDLE IMAGE
+========================================================= */
+
+.wedding-card-2 {
+
+    z-index: 2;
+
+    transform:
+        rotate(-4deg)
+        translate(-16px, 8px);
+}
+
+
+/* =========================================================
+   FRONT IMAGE
+========================================================= */
+
+.wedding-card-1 {
+
+    z-index: 3;
+
+    transform:
+        rotate(-1deg);
+}
+
+
+/* =========================================================
+   NORMAL HOVER
+========================================================= */
+
+.wedding-stack:hover .wedding-card-1 {
+
+    transform:
+        rotate(-2deg)
+        translateY(-5px);
+}
+
+
+/* =========================================================
+   FRONT PHOTO LEAVES THE STACK
+========================================================= */
+
+.wedding-stack.show-next
+.wedding-card-1 {
+
+    transform:
+        translateX(125%)
+        translateY(-25px)
+        rotate(13deg);
+
+    opacity: 0;
+
+    z-index: 20;
+}
+
+
+/* =========================================================
+   MIDDLE BECOMES FRONT
+========================================================= */
+
+.wedding-stack.show-next
+.wedding-card-2 {
+
+    transform:
+        rotate(-1deg);
+
+    z-index: 3;
+}
+
+
+/* =========================================================
+   BACK BECOMES MIDDLE
+========================================================= */
+
+.wedding-stack.show-next
+.wedding-card-3 {
+
+    transform:
+        rotate(-4deg)
+        translate(-16px, 8px);
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   COUNTER
+========================================================= */
+
+.wedding-counter {
+
+    position: absolute;
+
+    right: 18px;
+
+    bottom: 18px;
+
+    z-index: 30;
+
+    padding:
+        7px 11px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(45,29,22,.65);
+
+    color: #fff;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: .12em;
+
+    backdrop-filter: blur(6px);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .wedding-stack {
+
+        width: min(88%, 500px);
+
+    }
 
 }
 
-.birthday-image.active{
 
-    transform:rotateY(0deg);
+/* =========================================================
+   PHONE
+========================================================= */
 
-    opacity:1;
+@media (max-width: 700px) {
+
+    .wedding-stack {
+
+        width: 90%;
+
+        aspect-ratio: 4 / 3;
+
+    }
+
+
+    .wedding-card {
+
+        padding: 5px;
+
+    }
+
+
+    .wedding-card-3 {
+
+        transform:
+            rotate(5deg)
+            translate(12px, 8px);
+
+    }
+
+
+    .wedding-card-2 {
+
+        transform:
+            rotate(-4deg)
+            translate(-8px, 5px);
+
+    }
+
+
+    .wedding-card-1 {
+
+        transform:
+            rotate(-1deg);
+
+    }
+
+
+    .wedding-stack.show-next
+    .wedding-card-1 {
+
+        transform:
+            translateX(110%)
+            translateY(-12px)
+            rotate(10deg);
+
+    }
+
+
+    .wedding-counter {
+
+        right: 10px;
+
+        bottom: 10px;
+
+        font-size: 7px;
+
+        padding:
+            5px 8px;
+
+    }
 
 }
 
-.birthday-card p{
 
-    width:92%;
+/* =========================================================
+   ORDER BUTTON
+========================================================= */
 
-    line-height:1.7;
+.order-btn {
+    display: inline-flex;
 
-    color:#666;
+    align-items: center;
+    justify-content: center;
 
+    gap: 8px;
+
+    padding:
+        10px 16px;
+
+    border:
+        1px solid
+        var(--chocolate);
+
+    border-radius: 2px;
+
+    background:
+        var(--chocolate);
+
+    color:
+        var(--cream);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 8px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        .25s ease;
 }
 
-.birthday-btn{
 
-    width:85%;
-
-    max-width:280px;
-
-    padding:14px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:10px;
-
-    text-decoration:none;
-
-    background:#4A2C2A;
-
-    color:#fff;
-
-    border:3px solid #D4AF37;
-
-    border-radius:50px;
-
-    font-weight:600;
-
+.order-btn i {
+    color:
+        #dda392;
 }
 
-.birthday-btn i{
 
-    color:#D4AF37;
+.order-btn:hover {
+    background:
+        var(--terracotta);
 
+    border-color:
+        var(--terracotta);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   PERSONAL NOTE
+========================================================= */
+
+.hand-note {
+    margin-top: 12px;
+
+    font-family:
+        "Italiana",
+        serif;
+
+    font-size: 16px;
+
+    color:
+        var(--terracotta);
+
+    opacity: .9;
+
+    transform: rotate(-2deg);
+}
+
+
+/* =========================================================
+   PAGE COMPOSITIONS
+========================================================= */
+
+.page[data-page="2"] .category {
+    grid-template-columns:
+        minmax(280px,.75fr)
+        minmax(0,1.05fr);
+}
+
+
+.page[data-page="2"] .details {
+    order: -1;
+}
+
+
+.page[data-page="3"] .category {
+    grid-template-columns: 1fr;
+
+    justify-items: center;
+}
+
+
+.page[data-page="3"] .photo {
+    width: min(68%, 650px);
+}
+
+
+.page[data-page="4"] .category {
+    grid-template-columns:
+        minmax(0,.95fr)
+        minmax(280px,.8fr);
+}
+
+
+.page[data-page="5"] .photo {
+    width: min(100%,580px);
+}
+
+
+.page[data-page="6"] .category {
+    grid-template-columns:
+        minmax(0,1fr)
+        minmax(250px,.6fr);
+}
+
+
+.page[data-page="7"] .category {
+    grid-template-columns:
+        minmax(280px,.8fr)
+        minmax(0,1fr);
+}
+
+
+.page[data-page="7"] .photo {
+    width: min(100%,650px);
+}
+
+
+/* =========================================================
+   FINAL PAGE
+========================================================= */
+
+.final-page {
+    background:
+        linear-gradient(
+            145deg,
+            #4a281c,
+            #2e1c15
+        );
+
+    color:
+        var(--cream);
+}
+
+
+.final-inner {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 40px;
+}
+
+
+.final-page h2 {
+    margin-top: 15px;
+
+    font-family:
+        "Italiana",
+        serif;
+
+    font-size:
+        clamp(48px,6vw,82px);
+
+    font-weight: 400;
+
+    line-height: .88;
+
+    letter-spacing: -.03em;
+}
+
+
+.final-page p {
+    width: 100%;
+
+    max-width: 470px;
+
+    margin:
+        20px 0;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    color:
+        #d9cbc0;
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.controls {
+    width:
+        min(94vw,1450px);
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top:
+        clamp(6px,1vw,12px);
+}
+
+
+.controls button {
+    border: none;
+
+    background: transparent;
+
+    color:
+        #674b3d;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 8px;
+
+    font-weight: 500;
+
+    letter-spacing: .18em;
+
+    cursor: pointer;
+
+    padding: 8px;
+
+    transition:
+        .25s ease;
+}
+
+
+.controls button:hover {
+    color:
+        var(--terracotta);
+}
+
+
+.controls button:disabled {
+    opacity: .25;
+
+    cursor:
+        not-allowed;
+}
+
+
+.controls i {
+    color:
+        var(--terracotta);
+}
+
+
+/* =========================================================
+   COUNTER
+========================================================= */
+
+.counter {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color:
+        #674b3d;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: .1em;
+}
+
+
+.counter-line {
+    width: 32px;
+
+    height: 1px;
+
+    background:
+        var(--terracotta);
+}
+
+
+/* =========================================================
+   WHATSAPP
+========================================================= */
+
+.floating-whatsapp {
+    position: fixed;
+
+    right:
+        clamp(12px,2vw,24px);
+
+    bottom:
+        clamp(12px,2vw,24px);
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        var(--terracotta);
+
+    background:
+        var(--chocolate);
+
+    color:
+        var(--cream);
+
+    z-index: 1000;
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.18);
+
+    transition:
+        .3s ease;
+}
+
+
+.floating-whatsapp:hover {
+    background:
+        var(--terracotta);
+
+    transform:
+        scale(1.07);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .book-wrapper {
+        width: 95vw;
+
+        height: 80dvh;
+
+        min-height: 500px;
+    }
+
+
+    .cover-content {
+        padding: 50px;
+    }
+
+
+    .cover h1 {
+        font-size:
+            clamp(52px,9vw,88px);
+    }
+
+
+    .category {
+        grid-template-columns:
+            minmax(0,1fr)
+            minmax(240px,.75fr);
+
+        gap: 35px;
+
+        padding: 40px;
+    }
+
+
+    .photo {
+        width: 100%;
+
+        max-width: 520px;
+    }
+
+
+    .details h2 {
+        font-size:
+            clamp(45px,7vw,70px);
+    }
+}
+
+
+/* =========================================================
+   PHONE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .site {
+        padding: 5px;
+    }
+
+
+    .book-wrapper {
+        width: 96vw;
+
+        height:
+            calc(100dvh - 70px);
+
+        min-height: 0;
+    }
+
+
+    /* =====================================================
+       PHONE PAGE
+    ===================================================== */
+
+    .page-inner {
+        padding:
+            24px 18px;
+    }
+
+
+    .page:not(.cover)::before {
+        top: 13px;
+
+        left: 18px;
+
+        font-size: 6px;
+
+        letter-spacing: .18em;
+    }
+
+
+    /* =====================================================
+       PHONE CATEGORY
+    ===================================================== */
+
+    .category,
+    .page[data-page="2"] .category,
+    .page[data-page="3"] .category,
+    .page[data-page="4"] .category,
+    .page[data-page="5"] .category,
+    .page[data-page="6"] .category,
+    .page[data-page="7"] .category,
+    .page[data-page="8"] .category {
+
+        width: 100%;
+        height: 100%;
+
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        grid-template-rows:
+            minmax(0,46%)
+            minmax(0,1fr);
+
+        gap: 12px;
+
+        padding:
+            30px 18px 15px;
+
+        align-items: center;
+
+        justify-items: center;
+    }
+
+
+    /* =====================================================
+       PHONE PHOTO
+    ===================================================== */
+
+    .photo,
+    .page[data-page="3"] .photo,
+    .page[data-page="4"] .photo,
+    .page[data-page="5"] .photo,
+    .page[data-page="6"] .photo,
+    .page[data-page="7"] .photo {
+
+        width:
+            min(92%,420px);
+
+        height: auto;
+
+        aspect-ratio: 4 / 3;
+
+        max-height: 100%;
+
+        justify-self: center;
+
+        align-self: center;
+    }
+
+
+    /* =====================================================
+       PHONE DETAILS
+    ===================================================== */
+
+    .details,
+    .page[data-page="4"] .details,
+    .page[data-page="6"] .details,
+    .page[data-page="8"] .details {
+
+        width: 100%;
+
+        min-height: 0;
+
+        padding:
+            2px 5px 4px;
+
+        align-items: center;
+
+        justify-content: flex-start;
+
+        text-align: center;
+
+        overflow: hidden;
+    }
+
+
+    .number {
+        padding-left: 0;
+
+        font-size: 7px;
+
+        letter-spacing: .22em;
+    }
+
+
+    .number::before {
+        display: none;
+    }
+
+
+    .details h2 {
+        width: 100%;
+
+        margin-top: 5px;
+
+        font-size:
+            clamp(36px,12vw,55px);
+
+        line-height: .9;
+    }
+
+
+    .line {
+        width: 48px;
+
+        margin:
+            8px auto;
+    }
+
+
+    .details p {
+        width: 100%;
+
+        max-width: 290px;
+
+        margin-bottom: 8px;
+
+        font-size: 9px;
+
+        line-height: 1.55;
+    }
+
+
+    .order-btn {
+        padding:
+            9px 13px;
+
+        font-size: 7px;
+    }
+
+
+    .hand-note {
+        margin-top: 7px;
+
+        font-size: 13px;
+    }
+
+
+    /* =====================================================
+       FULL SCREEN PHONE COVER
+    ===================================================== */
+
+    .cover {
+        width: 100%;
+        height: 100%;
+
+        overflow: hidden;
+    }
+
+
+    .cover-image {
+        position: absolute;
+
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        z-index: 0;
+    }
+
+
+    .cover-image img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        object-position: center;
+    }
+
+
+    .cover-overlay {
+        position: absolute;
+
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(35,22,16,.90) 0%,
+                rgba(35,22,16,.68) 42%,
+                rgba(35,22,16,.35) 70%,
+                rgba(35,22,16,.10) 100%
+            );
+    }
+
+
+    .cover-content {
+        position: relative;
+
+        width: 100%;
+        height: 100%;
+
+        padding:
+            32px;
+
+        justify-content: center;
+
+        align-items: flex-start;
+    }
+
+
+    .cover-small {
+        margin-bottom: 10px;
+
+        font-size: 7px;
+
+        letter-spacing: .18em;
+    }
+
+
+    .cover h1 {
+        max-width: 100%;
+
+        font-size:
+            clamp(45px,16vw,72px);
+
+        line-height: .88;
+    }
+
+
+    .cover h1 span {
+        margin-left: 18px;
+
+        margin-top: 5px;
+    }
+
+
+    .cover-line {
+        width: 44px;
+
+        margin:
+            14px 0 10px;
+    }
+
+
+    .cover-message {
+        max-width: 270px;
+
+        font-size: 9px;
+
+        line-height: 1.6;
+    }
+
+
+    .cover-note {
+        margin-top: 7px;
+
+        font-size: 9px;
+    }
+
+
+    .cover .open-btn {
+        margin-top: 13px;
+
+        padding:
+            9px 14px;
+
+        font-size: 7px;
+    }
+
+
+    .cover-footer {
+        left: 18px;
+
+        right: 18px;
+
+        bottom: 11px;
+
+        font-size: 5px;
+
+        letter-spacing: .12em;
+    }
+
+
+    /* =====================================================
+       FINAL PAGE PHONE
+    ===================================================== */
+
+    .final-inner {
+        padding: 25px;
+    }
+
+
+    .final-page h2 {
+        font-size:
+            clamp(40px,13vw,55px);
+    }
+
+
+    .final-page p {
+        max-width: 280px;
+
+        margin:
+            14px 0;
+
+        font-size: 9px;
+
+        line-height: 1.6;
+    }
+
+
+    /* =====================================================
+       PHONE CONTROLS
+    ===================================================== */
+
+    .controls {
+        width: 96vw;
+
+        margin-top: 3px;
+    }
+
+
+    .controls button {
+        font-size: 6px;
+
+        letter-spacing: .12em;
+
+        padding: 6px;
+    }
+
+
+    .counter {
+        font-size: 7px;
+    }
+
+
+    .counter-line {
+        width: 24px;
+    }
+
+
+    /* =====================================================
+       PHONE WHATSAPP
+    ===================================================== */
+
+    .floating-whatsapp {
+        width: 42px;
+        height: 42px;
+
+        right: 9px;
+
+        bottom: 46px;
+
+        font-size: 17px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 390px) {
+
+    .book-wrapper {
+        height:
+            calc(100dvh - 65px);
+    }
+
+
+    .category,
+    .page[data-page="2"] .category,
+    .page[data-page="3"] .category,
+    .page[data-page="4"] .category,
+    .page[data-page="5"] .category,
+    .page[data-page="6"] .category,
+    .page[data-page="7"] .category,
+    .page[data-page="8"] .category {
+
+        grid-template-rows:
+            minmax(0,43%)
+            minmax(0,1fr);
+
+        gap: 8px;
+
+        padding:
+            28px 14px 12px;
+    }
+
+
+    .photo {
+        width: 90%;
+
+        aspect-ratio: 4 / 3;
+    }
+
+
+    .details h2 {
+        font-size:
+            clamp(33px,12vw,48px);
+    }
+
+
+    .details p {
+        max-width: 250px;
+
+        font-size: 8px;
+    }
+
+
+    .cover-content {
+        padding:
+            24px 20px 8px;
+    }
+
+
+    .cover h1 {
+        font-size:
+            clamp(42px,15vw,62px);
+    }
+
+
+    .cover-message {
+        max-width: 245px;
+
+        font-size: 8px;
+    }
+
+
+    .cover-note {
+        font-size: 8px;
+    }
+
+
+    .cover .open-btn {
+        margin-top: 10px;
+
+        padding:
+            8px 12px;
+    }
+}
+
+
+/* =========================================================
+   SHORT PHONE
+========================================================= */
+
+@media (max-width: 700px)
+and (max-height: 650px) {
+
+    .book-wrapper {
+        height:
+            calc(100dvh - 60px);
+    }
+
+
+    .category,
+    .page[data-page="2"] .category,
+    .page[data-page="3"] .category,
+    .page[data-page="4"] .category,
+    .page[data-page="5"] .category,
+    .page[data-page="6"] .category,
+    .page[data-page="7"] .category,
+    .page[data-page="8"] .category {
+
+        grid-template-rows:
+            minmax(0,40%)
+            minmax(0,1fr);
+
+        gap: 5px;
+    }
+
+
+    .photo {
+        width: 82%;
+    }
+
+
+    .details p {
+        display: none;
+    }
+
+
+    .details h2 {
+        font-size:
+            clamp(32px,10vw,45px);
+    }
+
+
+    .line {
+        margin:
+            6px auto;
+    }
+
+
+    .cover-content {
+        padding:
+            20px;
+    }
+
+
+    .cover h1 {
+        font-size:
+            clamp(39px,13vw,55px);
+    }
+
+
+    .cover-line {
+        margin:
+            9px 0 7px;
+    }
+
+
+    .cover-message {
+        font-size: 7px;
+
+        line-height: 1.45;
+    }
+
+
+    .cover-note {
+        display: none;
+    }
+
+
+    .cover .open-btn {
+        margin-top: 8px;
+
+        padding:
+            7px 11px;
+    }
+}
+
+
+/* =========================================================
+   LANDSCAPE PHONE
+========================================================= */
+
+@media (max-width: 900px)
+and (orientation: landscape)
+and (max-height: 600px) {
+
+    .site {
+        padding: 4px;
+    }
+
+
+    .book-wrapper {
+        width: 94vw;
+
+        height:
+            calc(100dvh - 45px);
+    }
+
+
+    .category,
+    .page[data-page="2"] .category,
+    .page[data-page="3"] .category,
+    .page[data-page="4"] .category,
+    .page[data-page="5"] .category,
+    .page[data-page="6"] .category,
+    .page[data-page="7"] .category,
+    .page[data-page="8"] .category {
+
+        display: grid;
+
+        grid-template-columns:
+            minmax(0,1fr)
+            minmax(200px,.7fr);
+
+        grid-template-rows: 1fr;
+
+        gap: 20px;
+
+        padding:
+            20px 30px;
+    }
+
+
+    .photo {
+        width: 80%;
+
+        max-height: 80%;
+    }
+
+
+    .details {
+        align-items: flex-start;
+
+        text-align: left;
+    }
+
+
+    .details h2 {
+        font-size:
+            clamp(35px,7vw,55px);
+    }
+
+
+    .details p {
+        font-size: 8px;
+    }
+
+
+    /* COVER REMAINS FULL SCREEN */
+
+    .cover-image {
+        position: absolute;
+
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+    }
+
+
+    .cover-image img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+    }
+
+
+    .cover-content {
+        width: 100%;
+        height: 100%;
+
+        padding:
+            25px 35px;
+
+        justify-content: center;
+    }
+
+
+    .cover h1 {
+        font-size:
+            clamp(42px,8vw,65px);
+    }
+
+
+    .cover-message {
+        font-size: 8px;
+    }
+
+
+    .cover-note {
+        font-size: 8px;
+    }
+
+
+    .cover .open-btn {
+        margin-top: 10px;
+
+        padding:
+            8px 13px;
+    }
 }
