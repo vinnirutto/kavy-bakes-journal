@@ -192,38 +192,18 @@ document.getElementById("book").addEventListener(
 /* =========================================================
    WHATSAPP
 ========================================================= */
+function orderWhatsApp(cakeName) {
 
-function orderWhatsApp(product) {
-
-    /*
-       CHANGE THIS TO YOUR REAL
-       KAVY BAKES WHATSAPP NUMBER.
-
-       Example:
-       254712345678
-    */
-
-    const phoneNumber = "254700000000";
-
+    const phone = "254702361521";
 
     const message =
-        `Hello Kavy Bakes! 👋\n\n` +
-        `I am interested in ${product}.\n\n` +
-        `I would like to make an inquiry. 🎂`;
+        `Hello Kavy Bakes! 👋 I am interested in ${cakeName}. I would like to make an inquiry.`;
 
+    const url =
+        `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
 
-    const whatsapp =
-        `https://wa.me/${phoneNumber}?text=` +
-        encodeURIComponent(message);
-
-
-    window.open(
-        whatsapp,
-        "_blank"
-    );
-
+    window.open(url, "_blank");
 }
-
 
 /* =========================================================
    START
@@ -726,5 +706,915 @@ document.addEventListener("DOMContentLoaded", () => {
             passive: false
         }
     );
+
+});
+/* =========================================================
+   KAVY BAKES — GRADUATION SLIDER
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const graduationSlider =
+        document.querySelector(".graduation-slider");
+
+    if (!graduationSlider) return;
+
+
+    /* =====================================================
+       GET SLIDES
+    ===================================================== */
+
+    const slides =
+        graduationSlider.querySelectorAll(
+            ".graduation-slide"
+        );
+
+    const counter =
+        graduationSlider.querySelector(
+            ".graduation-current"
+        );
+
+
+    if (slides.length === 0) return;
+
+
+    let currentSlide = 0;
+
+    let isChanging = false;
+
+
+    /* =====================================================
+       SHOW SLIDE
+    ===================================================== */
+
+    function showGraduationSlide(index) {
+
+        if (isChanging) return;
+
+        isChanging = true;
+
+
+        slides.forEach((slide, i) => {
+
+            slide.classList.toggle(
+                "active",
+                i === index
+            );
+
+        });
+
+
+        currentSlide = index;
+
+
+        /* Update counter */
+
+        if (counter) {
+
+            counter.textContent =
+                String(currentSlide + 1)
+                .padStart(2, "0");
+
+        }
+
+
+        setTimeout(() => {
+
+            isChanging = false;
+
+        }, 700);
+
+    }
+
+
+    /* =====================================================
+       NEXT SLIDE
+    ===================================================== */
+
+    function nextGraduationSlide() {
+
+        let next =
+            currentSlide + 1;
+
+
+        if (next >= slides.length) {
+
+            next = 0;
+
+        }
+
+
+        showGraduationSlide(next);
+
+    }
+
+
+    /* =====================================================
+       AUTOMATIC CHANGE
+       
+       3000 = 3 SECONDS
+    ===================================================== */
+
+    const graduationTimer =
+        setInterval(() => {
+
+            nextGraduationSlide();
+
+        }, 3000);
+
+
+    /* =====================================================
+       PC HOVER
+       
+       Moving onto the Graduation frame
+       advances to the next image.
+
+       IMPORTANT:
+       It does NOT turn the journal page.
+    ===================================================== */
+
+    let hoverLocked = false;
+
+
+    graduationSlider.addEventListener(
+        "mouseenter",
+        event => {
+
+            event.stopPropagation();
+
+
+            if (hoverLocked) return;
+
+
+            hoverLocked = true;
+
+
+            nextGraduationSlide();
+
+
+            setTimeout(() => {
+
+                hoverLocked = false;
+
+            }, 1200);
+
+        }
+    );
+
+
+    /* =====================================================
+       PHONE TAP
+    ===================================================== */
+
+    graduationSlider.addEventListener(
+        "click",
+        event => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            nextGraduationSlide();
+
+        }
+    );
+
+
+    /* =====================================================
+       PHONE SWIPE
+    ===================================================== */
+
+    let touchStartX = 0;
+
+    let touchStartY = 0;
+
+
+    graduationSlider.addEventListener(
+        "touchstart",
+        event => {
+
+            event.stopPropagation();
+
+
+            const touch =
+                event.changedTouches[0];
+
+
+            touchStartX =
+                touch.clientX;
+
+            touchStartY =
+                touch.clientY;
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    graduationSlider.addEventListener(
+        "touchend",
+        event => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            const touch =
+                event.changedTouches[0];
+
+
+            const touchEndX =
+                touch.clientX;
+
+            const touchEndY =
+                touch.clientY;
+
+
+            const distanceX =
+                touchEndX - touchStartX;
+
+            const distanceY =
+                touchEndY - touchStartY;
+
+
+            /*
+             * Only react to horizontal swipes.
+             */
+
+            if (
+                Math.abs(distanceX) >
+                Math.abs(distanceY)
+                &&
+                Math.abs(distanceX) > 40
+            ) {
+
+                nextGraduationSlide();
+
+            }
+
+        },
+        {
+            passive: false
+        }
+    );
+
+
+    /* =====================================================
+       INITIAL SLIDE
+    ===================================================== */
+
+    showGraduationSlide(0);
+
+});
+/* =========================================================
+   KAVY BAKES — BABY SHOWER SLIDER
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const babySlider =
+        document.querySelector(".baby-slider");
+
+    if (!babySlider) return;
+
+
+    const slides =
+        babySlider.querySelectorAll(".baby-slide");
+
+    const counter =
+        babySlider.querySelector(".baby-current");
+
+
+    if (!slides.length) return;
+
+
+    let currentSlide = 0;
+
+    let changing = false;
+
+
+    /* =====================================================
+       SHOW SLIDE
+    ===================================================== */
+
+    function showBabySlide(index) {
+
+        if (changing) return;
+
+        changing = true;
+
+
+        slides.forEach((slide, i) => {
+
+            slide.classList.toggle(
+                "active",
+                i === index
+            );
+
+        });
+
+
+        currentSlide = index;
+
+
+        if (counter) {
+
+            counter.textContent =
+                String(currentSlide + 1)
+                .padStart(2, "0");
+
+        }
+
+
+        setTimeout(() => {
+
+            changing = false;
+
+        }, 700);
+
+    }
+
+
+    /* =====================================================
+       NEXT
+    ===================================================== */
+
+    function nextBabySlide() {
+
+        let next =
+            currentSlide + 1;
+
+        if (next >= slides.length) {
+            next = 0;
+        }
+
+        showBabySlide(next);
+
+    }
+
+
+    /* =====================================================
+       AUTOMATIC — 3 SECONDS
+    ===================================================== */
+
+    setInterval(() => {
+
+        nextBabySlide();
+
+    }, 3000);
+
+
+    /* =====================================================
+       DESKTOP HOVER
+       Changes the BABY IMAGE only.
+       It does NOT turn the journal page.
+    ===================================================== */
+
+    let hoverLocked = false;
+
+
+    babySlider.addEventListener(
+        "mouseenter",
+        event => {
+
+            event.stopPropagation();
+
+            if (hoverLocked) return;
+
+            hoverLocked = true;
+
+            nextBabySlide();
+
+
+            setTimeout(() => {
+
+                hoverLocked = false;
+
+            }, 1200);
+
+        }
+    );
+
+
+    /* =====================================================
+       PHONE / CLICK
+    ===================================================== */
+
+    babySlider.addEventListener(
+        "click",
+        event => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            nextBabySlide();
+
+        }
+    );
+
+
+    /* =====================================================
+       SWIPE
+    ===================================================== */
+
+    let startX = 0;
+    let startY = 0;
+
+
+    babySlider.addEventListener(
+        "touchstart",
+        event => {
+
+            event.stopPropagation();
+
+            const touch =
+                event.changedTouches[0];
+
+            startX = touch.clientX;
+            startY = touch.clientY;
+
+        },
+        { passive: true }
+    );
+
+
+    babySlider.addEventListener(
+        "touchend",
+        event => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            const touch =
+                event.changedTouches[0];
+
+            const endX = touch.clientX;
+            const endY = touch.clientY;
+
+            const distanceX =
+                endX - startX;
+
+            const distanceY =
+                endY - startY;
+
+
+            if (
+                Math.abs(distanceX) >
+                Math.abs(distanceY)
+                &&
+                Math.abs(distanceX) > 40
+            ) {
+
+                nextBabySlide();
+
+            }
+
+        },
+        { passive: false }
+    );
+
+
+    /* =====================================================
+       START
+    ===================================================== */
+
+    showBabySlide(0);
+
+});
+/* =========================================================
+   KAVY BAKES — PROPOSAL SLIDER
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const proposalSlider =
+        document.querySelector(".proposal-slider");
+
+    if (!proposalSlider) return;
+
+
+    const slides =
+        proposalSlider.querySelectorAll(
+            ".proposal-slide"
+        );
+
+    const counter =
+        proposalSlider.querySelector(
+            ".proposal-current"
+        );
+
+
+    if (!slides.length) return;
+
+
+    let currentSlide = 0;
+
+    let changing = false;
+
+
+    /* =====================================================
+       SHOW SLIDE
+    ===================================================== */
+
+    function showProposalSlide(index) {
+
+        if (changing) return;
+
+        changing = true;
+
+
+        slides.forEach((slide, i) => {
+
+            slide.classList.toggle(
+                "active",
+                i === index
+            );
+
+        });
+
+
+        currentSlide = index;
+
+
+        if (counter) {
+
+            counter.textContent =
+                String(currentSlide + 1)
+                .padStart(2, "0");
+
+        }
+
+
+        setTimeout(() => {
+
+            changing = false;
+
+        }, 700);
+
+    }
+
+
+    /* =====================================================
+       NEXT SLIDE
+    ===================================================== */
+
+    function nextProposalSlide() {
+
+        let next =
+            currentSlide + 1;
+
+        if (next >= slides.length) {
+
+            next = 0;
+
+        }
+
+        showProposalSlide(next);
+
+    }
+
+
+    /* =====================================================
+       AUTOMATIC — EVERY 3 SECONDS
+    ===================================================== */
+
+    setInterval(() => {
+
+        nextProposalSlide();
+
+    }, 3000);
+
+
+    /* =====================================================
+       CLICK IMAGE
+    ===================================================== */
+
+    proposalSlider.addEventListener(
+        "click",
+        event => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            nextProposalSlide();
+
+        }
+    );
+
+
+    /* =====================================================
+       DESKTOP HOVER
+    ===================================================== */
+
+    let hoverLocked = false;
+
+
+    proposalSlider.addEventListener(
+        "mouseenter",
+        event => {
+
+            event.stopPropagation();
+
+            if (hoverLocked) return;
+
+            hoverLocked = true;
+
+            nextProposalSlide();
+
+
+            setTimeout(() => {
+
+                hoverLocked = false;
+
+            }, 1200);
+
+        }
+    );
+
+
+    /* =====================================================
+       TOUCH / SWIPE
+    ===================================================== */
+
+    let startX = 0;
+
+    let startY = 0;
+
+
+    proposalSlider.addEventListener(
+        "touchstart",
+        event => {
+
+            event.stopPropagation();
+
+            const touch =
+                event.changedTouches[0];
+
+            startX = touch.clientX;
+
+            startY = touch.clientY;
+
+        },
+        { passive: true }
+    );
+
+
+    proposalSlider.addEventListener(
+        "touchend",
+        event => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            const touch =
+                event.changedTouches[0];
+
+            const endX = touch.clientX;
+
+            const endY = touch.clientY;
+
+            const distanceX =
+                endX - startX;
+
+            const distanceY =
+                endY - startY;
+
+
+            if (
+                Math.abs(distanceX) >
+                Math.abs(distanceY)
+                &&
+                Math.abs(distanceX) > 40
+            ) {
+
+                nextProposalSlide();
+
+            }
+
+        },
+        { passive: false }
+    );
+
+
+    /* =====================================================
+       INITIAL IMAGE
+    ===================================================== */
+
+    showProposalSlide(0);
+
+});
+/* =========================================================
+   KAVY BAKES — KIDS BIRTHDAY VIDEO + CAKE
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const slider =
+        document.querySelector(
+            ".kids-birthday-slider"
+        );
+
+    if (!slider) return;
+
+
+    const media =
+        slider.querySelectorAll(
+            ".kids-media"
+        );
+
+    const video =
+        slider.querySelector(
+            ".kids-video video"
+        );
+
+    const counter =
+        slider.querySelector(
+            ".kids-current"
+        );
+
+
+    let current = 0;
+
+    let changing = false;
+
+
+    /* =====================================================
+       SHOW MEDIA
+    ===================================================== */
+
+    function showKidsMedia(index) {
+
+        if (changing) return;
+
+        changing = true;
+
+
+        media.forEach((item, i) => {
+
+            item.classList.toggle(
+                "active",
+                i === index
+            );
+
+        });
+
+
+        current = index;
+
+
+        if (counter) {
+
+            counter.textContent =
+                String(current + 1)
+                .padStart(2, "0");
+
+        }
+
+
+        /* Stop video when showing cake */
+
+        if (current !== 0 && video) {
+
+            video.pause();
+
+        }
+
+
+        /* Play video when returning */
+
+        if (current === 0 && video) {
+
+            video.currentTime = 0;
+
+            video.play().catch(() => {});
+
+        }
+
+
+        setTimeout(() => {
+
+            changing = false;
+
+        }, 800);
+
+    }
+
+
+    /* =====================================================
+       SHOW CAKE
+    ===================================================== */
+
+    function showCake() {
+
+        showKidsMedia(1);
+
+    }
+
+
+    /* =====================================================
+       VIDEO ENDS
+       → SHOW CAKE
+    ===================================================== */
+
+    if (video) {
+
+        video.addEventListener(
+            "ended",
+            () => {
+
+                showCake();
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       AFTER CAKE — RETURN TO VIDEO
+    ===================================================== */
+
+    function restartStory() {
+
+        setTimeout(() => {
+
+            showKidsMedia(0);
+
+        }, 3000);
+
+    }
+
+
+    /* =====================================================
+       WATCH FOR CAKE
+    ===================================================== */
+
+    const observer =
+        new MutationObserver(() => {
+
+            if (
+                current === 1 &&
+                media[1].classList.contains("active")
+            ) {
+
+                restartStory();
+
+                observer.disconnect();
+
+            }
+
+        });
+
+
+    observer.observe(
+        slider,
+        {
+            attributes: true,
+            subtree: true,
+            attributeFilter: ["class"]
+        }
+    );
+
+
+    /* =====================================================
+       CLICK
+    ===================================================== */
+
+    slider.addEventListener(
+        "click",
+        event => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            if (current === 0) {
+
+                showCake();
+
+            } else {
+
+                showKidsMedia(0);
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       START VIDEO
+    ===================================================== */
+
+    showKidsMedia(0);
 
 });
