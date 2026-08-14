@@ -4842,3 +4842,64 @@ and (max-height: 600px) {
     letter-spacing: .1em;
     opacity: .8;
 }
+/* =========================================================
+   WEDDING — ELEGANT TITLE STYLING
+   Does not affect the photo slider
+========================================================= */
+
+.page[data-page="2"] .details .eyebrow {
+    letter-spacing: .22em;
+    font-size: 8px;
+}
+
+.page[data-page="2"] .details h2 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(42px, 5vw, 64px);
+    font-weight: 400;
+    letter-spacing: -.02em;
+}
+
+.page[data-page="2"] .details .line {
+    width: 55px;
+    margin: 16px 0;
+}
+
+.page[data-page="2"] .details p {
+    max-width: 360px;
+    line-height: 1.8;
+}
+
+/* Small elegant heart underneath the title */
+
+.page[data-page="2"] .details h2::after {
+    content: "♡";
+    display: block;
+    font-family: serif;
+    font-size: 18px;
+    margin-top: 7px;
+    opacity: .55;
+}
+
+/* PHONE */
+
+@media (max-width: 700px) {
+
+    .page[data-page="2"] .details h2 {
+        font-size: clamp(38px, 12vw, 52px);
+    }
+
+    .page[data-page="2"] .details h2::after {
+        font-size: 15px;
+        margin-top: 5px;
+    }
+
+    .page[data-page="2"] .details .eyebrow {
+        font-size: 6px;
+        letter-spacing: .18em;
+    }
+
+    .page[data-page="2"] .details p {
+        max-width: 290px;
+        line-height: 1.7;
+    }
+}

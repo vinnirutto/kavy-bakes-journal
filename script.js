@@ -440,6 +440,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
 
+    if (cards.some(card => !card)) return;
+
+
     const counter =
         stack.querySelector(".wedding-current");
 
@@ -447,8 +450,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let current = 1;
 
     let moving = false;
-
-    let hoverReady = true;
 
 
     /* =====================================================
@@ -459,7 +460,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "pointerdown",
         "pointerup",
         "mousedown",
-        "mouseup"
+        "mouseup",
+        "click"
     ].forEach(type => {
 
         stack.addEventListener(
@@ -486,36 +488,22 @@ document.addEventListener("DOMContentLoaded", () => {
         moving = true;
 
 
-        /*
-         * Front photograph physically
-         * leaves the stack.
-         */
+        /* FRONT PHOTO LEAVES THE STACK */
 
         stack.classList.add("show-next");
 
 
-        /*
-         * Wait until the front photograph
-         * has completely moved away.
-         */
+        /* WAIT FOR CSS ANIMATION */
 
         setTimeout(() => {
-
-
-            /*
-             * Move the front card to the back.
-             */
 
             const first =
                 cards.shift();
 
-
             cards.push(first);
 
 
-            /*
-             * Change the z-index order.
-             */
+            /* UPDATE Z-INDEX */
 
             cards.forEach((card, index) => {
 
@@ -525,18 +513,14 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
 
-            /*
-             * Remove animation class.
-             */
+            /* REMOVE ANIMATION */
 
             stack.classList.remove(
                 "show-next"
             );
 
 
-            /*
-             * Reset the physical positions.
-             */
+            /* RESET POSITIONS */
 
             cards[0].style.transform =
                 "rotate(-1deg)";
@@ -548,16 +532,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 "rotate(-4deg) translate(-16px,8px)";
 
 
-            /*
-             * Update counter.
-             */
+            /* UPDATE COUNTER */
 
             current++;
 
             if (current > 3) {
-
                 current = 1;
-
             }
 
 
@@ -565,7 +545,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 counter.textContent =
                     String(current)
-                    .padStart(2,"0");
+                    .padStart(2, "0");
 
             }
 
@@ -578,37 +558,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       DESKTOP
+       AUTOMATIC WEDDING SLIDER
        
-       CURSOR ENTERS PHOTO
+       CHANGES EVERY 3 SECONDS
     ===================================================== */
 
-    stack.addEventListener(
-        "mouseenter",
-        () => {
+    setInterval(() => {
 
-            if (!hoverReady) return;
+        nextWeddingPhoto();
 
-
-            hoverReady = false;
-
-
-            nextWeddingPhoto();
-
-
-            /*
-             * Prevent rapid cycling while
-             * cursor remains over the frame.
-             */
-
-            setTimeout(() => {
-
-                hoverReady = true;
-
-            }, 1200);
-
-        }
-    );
+    }, 3000);
 
 
     /* =====================================================
@@ -622,7 +581,6 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault();
 
             event.stopPropagation();
-
 
             nextWeddingPhoto();
 

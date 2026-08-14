@@ -1,0 +1,859 @@
+
+/* =========================================================
+   KAVY BAKES
+   THE GOLDEN CHAPTER
+   JOURNAL-STYLE CLIENT PHOTO WALL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    background: #fff8f2;
+
+    color: #3a241b;
+
+    font-family: "Poppins", sans-serif;
+}
+
+
+/* =========================================================
+   MAIN GALLERY
+========================================================= */
+
+.golden-gallery {
+    min-height: 100vh;
+
+    padding: 30px 20px 70px;
+
+    background:
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(190, 155, 105, .16),
+            transparent 42%
+        ),
+        linear-gradient(
+            135deg,
+            #fffaf5 0%,
+            #f5e7d8 50%,
+            #fff8f2 100%
+        );
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.golden-header {
+    max-width: 800px;
+
+    margin: 0 auto 50px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   BACK TO JOURNAL
+========================================================= */
+
+.back-journal {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 28px;
+
+    color: #3a241b;
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    letter-spacing: .18em;
+
+    text-transform: uppercase;
+
+    opacity: .7;
+
+    transition: opacity .3s ease,
+                transform .3s ease;
+}
+
+.back-journal:hover {
+    opacity: 1;
+
+    transform: translateX(-4px);
+}
+
+
+/* =========================================================
+   HEADER TEXT
+========================================================= */
+
+.golden-eyebrow {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #927044;
+
+    font-size: 9px;
+
+    letter-spacing: .38em;
+
+    font-weight: 500;
+}
+
+
+.golden-header h1 {
+    margin: 0;
+
+    color: #3a241b;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(45px, 8vw, 82px);
+
+    font-weight: 400;
+
+    line-height: .95;
+}
+
+
+.golden-line {
+    width: 80px;
+
+    height: 1px;
+
+    margin: 23px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #a88659,
+            transparent
+        );
+}
+
+
+.golden-header p {
+    margin: 0 0 8px;
+
+    color: #5a4030;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 17px;
+
+    font-style: italic;
+}
+
+
+.golden-header small {
+    color: #806142;
+
+    font-size: 8px;
+
+    letter-spacing: .12em;
+}
+
+
+/* =========================================================
+   OLD FAMILY PHOTO WALL
+========================================================= */
+
+.memory-wall {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 1120px;
+
+    margin: 0 auto;
+
+    padding: 60px 48px 70px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 48px 32px;
+
+    background:
+
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,255,255,.20),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(90,60,40,.08),
+            transparent 35%
+        ),
+
+        #ead7c0;
+
+    border: 8px solid #c4a16e;
+
+    outline:
+        1px solid
+        rgba(75,45,27,.45);
+
+    box-shadow:
+
+        inset
+        0 0 70px
+        rgba(65,40,25,.18),
+
+        inset
+        0 0 12px
+        rgba(65,40,25,.20),
+
+        0 25px 55px
+        rgba(58,36,27,.18);
+}
+
+
+/* =========================================================
+   INNER WALL BORDER
+========================================================= */
+
+.memory-wall::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 13px;
+
+    border:
+        1px solid
+        rgba(120,88,48,.45);
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   WALL LABEL
+========================================================= */
+
+.memory-wall::after {
+    content:
+        "MEMORIES • MOMENTS • CHAPTERS";
+
+    position: absolute;
+
+    bottom: 17px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    color: #765738;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 7px;
+
+    letter-spacing: .28em;
+
+    opacity: .55;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   PHOTO FRAME
+========================================================= */
+
+.memory-frame {
+    position: relative;
+
+    margin: 0;
+
+    padding: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1e0c9,
+            #c4a06d,
+            #e8d0ad
+        );
+
+    border:
+        1px solid #755637;
+
+    box-shadow:
+        0 14px 25px
+        rgba(58,36,27,.23),
+
+        0 4px 8px
+        rgba(58,36,27,.12);
+
+    z-index: 1;
+
+    /* ONLY THE FRAME ANIMATES */
+
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease;
+}
+
+
+/* =========================================================
+   INNER FRAME LINE
+========================================================= */
+
+.memory-frame::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 4px;
+
+    border:
+        1px solid
+        rgba(102,70,36,.7);
+
+    pointer-events: none;
+
+    z-index: 3;
+}
+
+
+/* =========================================================
+   PHOTO HOLDER
+========================================================= */
+
+.photo-holder {
+    width: 100%;
+
+    aspect-ratio: 4 / 5;
+
+    overflow: hidden;
+
+    background: #d7bfa2;
+}
+
+
+/* =========================================================
+   PHOTO
+   COMPLETELY STATIC
+========================================================= */
+
+.photo-holder img {
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    /* NO FILTER */
+
+    filter: none;
+
+    /* NO TRANSFORM */
+
+    transform: none;
+
+    /* NO IMAGE ANIMATION */
+
+    transition: none;
+}
+
+
+/* =========================================================
+   IMPORTANT
+   IMAGE NEVER CHANGES ON HOVER
+========================================================= */
+
+.memory-frame:hover img {
+    transform: none;
+
+    filter: none;
+}
+
+
+/* =========================================================
+   NATURAL PHOTO ROTATIONS
+========================================================= */
+
+.memory-frame:nth-child(2n) {
+    transform:
+        rotate(2.5deg);
+}
+
+
+.memory-frame:nth-child(3n) {
+    transform:
+        rotate(-2.5deg);
+}
+
+
+.memory-frame:nth-child(4n) {
+    transform:
+        rotate(1.5deg);
+}
+
+
+.memory-frame:nth-child(5n) {
+    transform:
+        rotate(-3.5deg);
+}
+
+
+/* =========================================================
+   WIDE PHOTO
+========================================================= */
+
+.memory-frame:nth-child(7n) {
+    grid-column: span 2;
+}
+
+
+.memory-frame:nth-child(7n) .photo-holder {
+    aspect-ratio: 16 / 10;
+}
+
+
+/* =========================================================
+   FRAME HOVER
+   ONLY FRAME MOVES
+========================================================= */
+
+.memory-frame:hover {
+    transform:
+        translateY(-9px)
+        scale(1.03)
+        rotate(0deg);
+
+    z-index: 20;
+
+    box-shadow:
+        0 30px 50px
+        rgba(58,36,27,.30),
+
+        0 8px 16px
+        rgba(58,36,27,.18);
+}
+
+
+/* =========================================================
+   GOLDEN CHAPTER INVITATION
+========================================================= */
+
+.golden-invitation {
+    max-width: 650px;
+
+    margin: 65px auto 0;
+
+    padding: 38px 25px;
+
+    text-align: center;
+
+    border-top:
+        1px solid
+        rgba(128,94,52,.30);
+
+    border-bottom:
+        1px solid
+        rgba(128,94,52,.30);
+}
+
+
+.golden-invitation > span {
+    display: block;
+
+    margin-bottom: 13px;
+
+    color: #8b6a43;
+
+    font-size: 8px;
+
+    letter-spacing: .32em;
+
+    font-weight: 500;
+}
+
+
+.golden-invitation h2 {
+    margin:
+        0 auto 16px;
+
+    color: #3a241b;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(28px, 5vw, 43px);
+
+    font-weight: 400;
+
+    line-height: 1.1;
+}
+
+
+.golden-invitation p {
+    max-width: 470px;
+
+    margin:
+        0 auto 25px;
+
+    color: #5a4030;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 14px;
+
+    font-style: italic;
+
+    line-height: 1.7;
+
+    opacity: .82;
+}
+
+
+/* =========================================================
+   WHATSAPP BUTTON
+========================================================= */
+
+.golden-whatsapp {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    padding:
+        14px 25px;
+
+    color: #fff8f2;
+
+    background: #3a241b;
+
+    border:
+        1px solid #8b6a43;
+
+    text-decoration: none;
+
+    font-size: 8px;
+
+    letter-spacing: .16em;
+
+    text-transform: uppercase;
+
+    box-shadow:
+        0 8px 18px
+        rgba(58,36,27,.15);
+
+    transition:
+        background .3s ease,
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+
+.golden-whatsapp:hover {
+    background: #5a3928;
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 13px 25px
+        rgba(58,36,27,.25);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.golden-footer {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 25px;
+
+    margin-top: 45px;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid
+        rgba(128,94,52,.25);
+
+    color: #765738;
+
+    font-size: 7px;
+
+    letter-spacing: .18em;
+}
+
+
+.golden-footer a {
+    color: #3a241b;
+
+    text-decoration: none;
+
+    transition:
+        color .3s ease;
+}
+
+
+.golden-footer a:hover {
+    color: #9a7447;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .memory-wall {
+        grid-template-columns:
+            repeat(3, minmax(0,1fr));
+
+        gap:
+            35px 22px;
+
+        padding:
+            48px 27px 60px;
+    }
+
+
+    .memory-frame:nth-child(7n) {
+        grid-column: span 1;
+    }
+}
+
+
+/* =========================================================
+   PHONE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .golden-gallery {
+        padding:
+            22px 10px 45px;
+    }
+
+
+    .golden-header {
+        margin-bottom: 32px;
+    }
+
+
+    .golden-header h1 {
+        font-size: 40px;
+    }
+
+
+    .golden-header p {
+        font-size: 12px;
+    }
+
+
+    .golden-header small {
+        font-size: 7px;
+    }
+
+
+    /* =============================================
+       PHOTO WALL
+    ============================================= */
+
+    .memory-wall {
+        grid-template-columns:
+            repeat(2, minmax(0,1fr));
+
+        gap:
+            25px 13px;
+
+        padding:
+            38px 12px 50px;
+
+        border-width: 5px;
+    }
+
+
+    /* NO WIDE PHOTO ON PHONE */
+
+    .memory-frame:nth-child(7n) {
+        grid-column: span 1;
+    }
+
+
+    .memory-frame {
+        padding: 7px;
+    }
+
+
+    .photo-holder {
+        aspect-ratio: 4 / 5;
+    }
+
+
+    /* =============================================
+       PHONE ROTATIONS
+    ============================================= */
+
+    .memory-frame:nth-child(2n) {
+        transform:
+            rotate(2deg);
+    }
+
+
+    .memory-frame:nth-child(3n) {
+        transform:
+            rotate(-2deg);
+    }
+
+
+    .memory-frame:nth-child(4n) {
+        transform:
+            rotate(1.5deg);
+    }
+
+
+    .memory-frame:nth-child(5n) {
+        transform:
+            rotate(-2.5deg);
+    }
+
+
+    /* =============================================
+       PHONE HOVER
+       FRAME ONLY
+    ============================================= */
+
+    .memory-frame:hover {
+        transform:
+            translateY(-5px)
+            scale(1.02)
+            rotate(0deg);
+    }
+
+
+    /* IMAGE STAYS STATIC */
+
+    .memory-frame:hover img {
+        transform: none;
+
+        filter: none;
+    }
+
+
+    /* =============================================
+       INVITATION
+    ============================================= */
+
+    .golden-invitation {
+        margin-top: 38px;
+
+        padding:
+            30px 15px;
+    }
+
+
+    .golden-invitation h2 {
+        font-size: 26px;
+    }
+
+
+    .golden-invitation p {
+        font-size: 11px;
+
+        line-height: 1.65;
+    }
+
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+
+    .golden-footer {
+        flex-direction: column;
+
+        gap: 11px;
+
+        margin-top: 35px;
+
+        text-align: center;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .golden-header h1 {
+        font-size: 34px;
+    }
+
+
+    .memory-wall {
+        gap:
+            20px 9px;
+
+        padding:
+            30px 8px 45px;
+    }
+
+
+    .memory-frame {
+        padding: 6px;
+    }
+
+
+    .golden-invitation h2 {
+        font-size: 23px;
+    }
+}
