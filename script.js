@@ -1576,3 +1576,654 @@ document.addEventListener("DOMContentLoaded", () => {
     showKidsMedia(0);
 
 });
+
+/* =========================================================
+   KAVY BAKES — ASK KAVY CHATBOT
+   Friendly cake assistant with Quick Help and Let's Chat
+========================================================= */
+
+(() => {
+    function initAskKavy() {
+        const root = document.getElementById("kb-chatbot");
+
+        if (!root || root.dataset.initialized === "true") return;
+
+        const toggle = root.querySelector("#kb-chat-toggle");
+        const chatWindow = root.querySelector("#kb-chat-window");
+        const close = root.querySelector("#kb-chat-close");
+        const reset = root.querySelector("#kb-chat-reset");
+        const messages = root.querySelector("#kb-chat-messages");
+        const options = root.querySelector("#kb-chat-options");
+        const form = root.querySelector("#kb-chat-form");
+        const input = root.querySelector("#kb-chat-input");
+
+        if (
+            !toggle || !chatWindow || !messages ||
+            !options || !form || !input
+        ) {
+            console.error("Ask Kavy: Check the chatbot HTML IDs.");
+            return;
+        }
+
+        root.dataset.initialized = "true";
+
+        // Update this number if your business WhatsApp changes.
+        const managerNumber = "254702361521";
+
+        const cakeCategories = [
+            "Birthday Cakes",
+            "Wedding Cakes",
+            "Graduation Cakes",
+            "Anniversary Cakes",
+            "Baby Shower Cakes",
+            "Cupcakes",
+            "Other Cakes"
+        ];
+
+        const questions = [
+            "What is the occasion?",
+            "What cake size or number of servings do you need?",
+            "Which flavour would you prefer?",
+            "Describe your preferred design or theme.",
+            "What is your budget?",
+            "When do you need the cake?",
+            "Would you prefer delivery or collection?"
+        ];
+
+        const labels = [
+            "Occasion",
+            "Size / servings",
+            "Flavour",
+            "Design / theme",
+            "Budget",
+            "Required date",
+            "Delivery / collection"
+        ];
+
+        let mode = "menu";
+        let answers = [];
+        let questionIndex = 0;
+        let selectedCake = "";
+
+        // ---------------- OPEN AND CLOSE ----------------
+
+        function openChat() {
+            chatWindow.classList.add("kb-chat-open");
+            chatWindow.setAttribute("aria-hidden", "false");
+            toggle.setAttribute("aria-expanded", "true");
+            input.focus();
+        }
+
+        function closeChat() {
+            chatWindow.classList.remove("kb-chat-open");
+            chatWindow.setAttribute("aria-hidden", "true");
+            toggle.setAttribute("aria-expanded", "false");
+        }
+
+        toggle.addEventListener("click", () => {
+            if (chatWindow.classList.contains("kb-chat-open")) {
+                closeChat();
+            } else {
+                openChat();
+            }
+        });
+
+        close?.addEventListener("click", closeChat);
+
+        // ---------------- MESSAGES ----------------
+
+        function addMessage(sender, text) {
+            const message = document.createElement("div");
+
+            message.className =
+                sender === "user"
+                    ? "kb-message kb-user-message"
+                    : "kb-message kb-bot-message";
+
+            // textContent keeps customer text from being interpreted as HTML.
+            message.textContent = text;
+            messages.appendChild(message);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function showOptions(items) {
+            options.replaceChildren();
+
+            items.forEach(item => {
+                const button = document.createElement("button");
+
+                button.type = "button";
+                button.dataset.message = item;
+                button.textContent = item;
+
+                options.appendChild(button);
+            });
+        }
+
+        // ---------------- MAIN MENU ----------------
+
+        function showMainMenu() {
+            mode = "menu";
+
+            showOptions([
+                "Quick Help",
+                "Let's Chat 🌸",
+                "Browse Our Cakes",
+                "Design My Custom Cake",
+                "Chat with the Manager"
+            ]);
+        }
+
+        // ---------------- WHATSAPP ----------------
+
+        function sendToWhatsApp(message) {
+            const url =
+                "https://wa.me/" +
+                managerNumber +
+                "?text=" +
+                encodeURIComponent(message);
+
+            window.open(url, "_blank", "noopener,noreferrer");
+        }
+
+        // ---------------- QUICK HELP ----------------
+
+        function showQuickHelp() {
+            mode = "quick-help";
+
+            addMessage(
+                "bot",
+                "Coming right up, sweet friend! ❤️ No long queue at this cake counter. What do you need?"
+            );
+
+            showOptions([
+                "Cake Categories",
+                "Ask About Prices",
+                "Place an Order",
+                "Our Location",
+                "Contact Manager on WhatsApp",
+                "Return to Main Menu"
+            ]);
+        }
+
+        // ---------------- BROWSE CAKES ----------------
+
+        function browseCakes() {
+            mode = "browse";
+
+            addMessage(
+                "bot",
+                "Ooh, you're in the right place! ❤️ Let's find a cake you'll love. Choose a category and I'll help you enquire about designs, flavours, and prices. 👀"
+            );
+
+            showOptions(cakeCategories);
+        }
+
+        function selectCake(category) {
+            selectedCake = category;
+            mode = "selected-cake";
+
+            addMessage(
+                "bot",
+                `You've selected ${category}. Our manager can help confirm available designs, flavours, prices, and booking dates. ❤️`
+            );
+
+            showOptions([
+                "Ask About This Cake on WhatsApp",
+                "Browse More Cakes",
+                "Return to Main Menu"
+            ]);
+        }
+
+        // ---------------- CUSTOM CAKE REQUEST ----------------
+
+        function startCustomCake() {
+            mode = "custom";
+            answers = [];
+            questionIndex = 0;
+
+            options.replaceChildren();
+
+            addMessage(
+                "bot",
+                "Let's design your custom cake! ❤️ I'll ask a few quick questions so we can prepare your request. And don't worry, this isn't a school exam! 🌸"
+            );
+
+            askQuestion();
+        }
+
+        function askQuestion() {
+            if (questionIndex < questions.length) {
+                addMessage("bot", questions[questionIndex]);
+                input.placeholder = "Type your answer...";
+                input.focus();
+            } else {
+                reviewRequest();
+            }
+        }
+
+        function reviewRequest() {
+            mode = "review";
+
+            let summary = "Here's your custom cake request:\n\n";
+
+            labels.forEach((label, index) => {
+                summary += `${label}: ${answers[index]}\n`;
+            });
+
+            addMessage("bot", summary);
+
+            addMessage(
+                "bot",
+                "Have a look and make sure everything is correct. When you're happy, you can send it to our manager on WhatsApp. ❤️"
+            );
+
+            showOptions([
+                "Approve & Continue to WhatsApp",
+                "Start My Request Again",
+                "Return to Main Menu"
+            ]);
+        }
+
+        function buildRequestMessage() {
+            let message =
+                "Hello Kavy Bakes! I'd like to enquire about a custom cake.\n\n";
+
+            labels.forEach((label, index) => {
+                message += `${label}: ${answers[index]}\n`;
+            });
+
+            message +=
+                "\nPlease confirm availability and the final price. Thank you!";
+
+            return message;
+        }
+
+        // ---------------- MANAGER CONTACT ----------------
+
+        function contactManager() {
+            mode = "manager";
+
+            addMessage(
+                "bot",
+                "Of course, sweet friend! ❤️ Our manager can help with orders, prices, custom designs, availability, and special requests. We're based in Kimumu, Eldoret, Kenya. Choose below when you're ready. 🌸"
+            );
+
+            showOptions([
+                "Contact Manager on WhatsApp",
+                "Return to Main Menu"
+            ]);
+        }
+
+        // ---------------- FRIENDLY CHAT ----------------
+
+        function startFriendlyChat() {
+            mode = "conversation";
+
+            addMessage(
+                "bot",
+                "Yesss, you've found your cake bestie! ❤️🌸 Welcome to the fun side of Kavy Bakes! No boring interviews here, promise. Although I might ask about cake... a lot. It's kind of my thing. 👀"
+            );
+
+            addMessage(
+                "bot",
+                "So, what are we celebrating today? And please don't say your diet... because cake might have other plans!"
+            );
+
+            showOptions([
+                "Birthday 🎂",
+                "Wedding 💍",
+                "Graduation 🎓",
+                "Anniversary 💕",
+                "Baby Shower 🍼",
+                "Just Exploring 🌸",
+                "Surprise Someone ❤️",
+                "Return to Main Menu"
+            ]);
+        }
+
+        const friendlyReplies = {
+            "Birthday 🎂":
+                "Birthday cake? Now we're talking! 🎂❤️ Another year older, another reason to eat cake. Who's the lucky birthday star?",
+
+            "Wedding 💍":
+                "Ooh, wedding bells! 💍💕 Let's find a cake beautiful enough to make the guests take pictures before they take a bite. What's your dream wedding cake like?",
+
+            "Graduation 🎓":
+                "Congratulations to the graduate! 🎓❤️ All those books deserve a cake reward. Honestly, cake should be part of every graduation package. What's the celebration plan?",
+
+            "Anniversary 💕":
+                "Aww, love is in the air! 💕 Let's find a cake sweeter than those love messages. Don't worry, I won't ask to read them... unless they mention cake! 👀",
+
+            "Baby Shower 🍼":
+                "A tiny human and a very important cake? 🍼❤️ Sounds like a beautiful celebration! Are you thinking cute, elegant, colourful, or something unique?",
+
+            "Just Exploring 🌸":
+                "Window shopping for cakes? You're among your people! 🌸👀 We don't judge cake curiosity here. Even 'just looking' can turn into 'please add extra frosting'!",
+
+            "Surprise Someone ❤️":
+                "Ohooo, we're planning a surprise! ❤️👀 The mission is simple: make them smile, make the cake gorgeous, and try not to reveal the surprise!"
+        };
+
+        // ---------------- CAKE JOKES ----------------
+
+        const cakeJokes = [
+            "Why did the cake go to the doctor? Because it was feeling crumby! 😂",
+            "What's a cake's favourite subject? Bake-ology! 👀",
+            "Why was the cake so confident? It knew it was on another tier! 😂",
+            "I told a cake to follow its dreams. It rolled straight into the frosting! ❤️",
+            "What's the difference between a cake and a secret? Eventually, someone cuts into both! 😂"
+        ];
+
+        function tellCakeJoke() {
+            const joke =
+                cakeJokes[Math.floor(Math.random() * cakeJokes.length)];
+
+            addMessage("bot", joke);
+
+            showOptions([
+                "Another Cake Joke 😂",
+                "Design My Custom Cake",
+                "Ask About Prices",
+                "Return to Main Menu"
+            ]);
+        }
+
+        // ---------------- OPTION CLICK HANDLER ----------------
+
+        options.addEventListener("click", event => {
+            const button = event.target.closest("button[data-message]");
+
+            if (!button) return;
+
+            const choice = button.dataset.message;
+
+            addMessage("user", choice);
+
+            // Review actions
+            if (mode === "review") {
+                if (choice === "Approve & Continue to WhatsApp") {
+                    sendToWhatsApp(buildRequestMessage());
+                    return;
+                }
+
+                if (choice === "Start My Request Again") {
+                    startCustomCake();
+                    return;
+                }
+
+                if (choice === "Return to Main Menu") {
+                    showMainMenu();
+                    return;
+                }
+
+                return;
+            }
+
+            // Main menu actions
+            if (choice === "Quick Help") {
+                showQuickHelp();
+                return;
+            }
+
+            if (choice === "Let's Chat 🌸") {
+                startFriendlyChat();
+                return;
+            }
+
+            if (
+                choice === "Browse Our Cakes" ||
+                choice === "Cake Categories"
+            ) {
+                browseCakes();
+                return;
+            }
+
+            if (choice === "Design My Custom Cake" ||
+                choice === "Place an Order") {
+                startCustomCake();
+                return;
+            }
+
+            if (choice === "Chat with the Manager") {
+                contactManager();
+                return;
+            }
+
+            // Quick Help actions
+            if (mode === "quick-help") {
+                if (choice === "Ask About Prices") {
+                    addMessage(
+                        "bot",
+                        "Let's talk budget! ❤️ Our homemade cake prices are negotiable. The final price depends on the cake size and design. Tell me what you have in mind, or contact our manager for a quote."
+                    );
+
+                    showOptions([
+                        "Contact Manager on WhatsApp",
+                        "Design My Custom Cake",
+                        "Return to Main Menu"
+                    ]);
+
+                    return;
+                }
+
+                if (choice === "Our Location") {
+                    addMessage(
+                        "bot",
+                        "Kavy Bakes is based in Kimumu, Eldoret, Kenya. ❤️ Contact our manager for directions and to confirm delivery or collection arrangements. 🌸"
+                    );
+
+                    showOptions([
+                        "Contact Manager on WhatsApp",
+                        "Return to Main Menu"
+                    ]);
+
+                    return;
+                }
+            }
+
+            // Friendly conversation
+            if (mode === "conversation") {
+                if (choice === "Return to Main Menu") {
+                    showMainMenu();
+                    return;
+                }
+
+                if (choice === "Tell Me a Cake Joke 😂" ||
+                    choice === "Another Cake Joke 😂") {
+                    tellCakeJoke();
+                    return;
+                }
+
+                if (friendlyReplies[choice]) {
+                    addMessage("bot", friendlyReplies[choice]);
+
+                    showOptions([
+                        "Design My Custom Cake",
+                        "Ask About Prices",
+                        "Browse Our Cakes",
+                        "Contact Manager on WhatsApp",
+                        "Tell Me a Cake Joke 😂",
+                        "Return to Main Menu"
+                    ]);
+
+                    return;
+                }
+            }
+
+            // Cake category selected
+            if (cakeCategories.includes(choice)) {
+                selectCake(choice);
+                return;
+            }
+
+            // Selected cake follow-up
+            if (choice === "Ask About This Cake on WhatsApp") {
+                sendToWhatsApp(
+                    `Hello Kavy Bakes! I'd like to enquire about ${selectedCake}. Please share available options and prices.`
+                );
+                return;
+            }
+
+            if (choice === "Browse More Cakes") {
+                browseCakes();
+                return;
+            }
+
+            // WhatsApp actions
+            if (choice === "Contact Manager on WhatsApp") {
+                sendToWhatsApp(
+                    "Hello Kavy Bakes! I'd like to speak with the manager about a cake order or enquiry."
+                );
+                return;
+            }
+
+            // Price enquiries from the friendly chat
+            if (choice === "Ask About Prices") {
+                addMessage(
+                    "bot",
+                    "Our homemade cake prices are negotiable! ❤️ The final price depends on your size and design. Want to tell me about your cake, or ask our manager for a quote?"
+                );
+
+                showOptions([
+                    "Design My Custom Cake",
+                    "Contact Manager on WhatsApp",
+                    "Return to Main Menu"
+                ]);
+
+                return;
+            }
+
+            if (choice === "Tell Me a Cake Joke 😂" ||
+                choice === "Another Cake Joke 😂") {
+                tellCakeJoke();
+                return;
+            }
+
+            // Return to main menu
+            if (choice === "Return to Main Menu") {
+                showMainMenu();
+            }
+        });
+
+        // ---------------- TYPED CUSTOMER MESSAGES ----------------
+
+        form.addEventListener("submit", event => {
+            event.preventDefault();
+
+            const answer = input.value.trim();
+
+            if (!answer) return;
+
+            input.value = "";
+            addMessage("user", answer);
+
+            // Collect custom cake details
+            if (mode === "custom") {
+                answers.push(answer);
+                questionIndex++;
+                askQuestion();
+                return;
+            }
+
+            // Simple natural-language responses
+            const text = answer.toLowerCase();
+
+            if (
+                text.includes("hello") ||
+                text.includes("hi") ||
+                text.includes("hey")
+            ) {
+                addMessage(
+                    "bot",
+                    "Heyyy, sweet friend! ❤️ Welcome to Kavy Bakes. I promise this conversation is sweeter than a plain biscuit. What can I help you with?"
+                );
+            } else if (
+                text.includes("price") ||
+                text.includes("cost") ||
+                text.includes("how much") ||
+                text.includes("budget")
+            ) {
+                addMessage(
+                    "bot",
+                    "Let's talk budget! ❤️ Our homemade cake prices are negotiable, and the final price depends on your cake size and design. I don't want to invent a price and surprise you for the wrong reason! Would you like to describe your cake or contact our manager?"
+                );
+
+                showOptions([
+                    "Design My Custom Cake",
+                    "Contact Manager on WhatsApp",
+                    "Return to Main Menu"
+                ]);
+
+                return;
+            } else if (
+                text.includes("location") ||
+                text.includes("where are you") ||
+                text.includes("located")
+            ) {
+                addMessage(
+                    "bot",
+                    "We're based in Kimumu, Eldoret, Kenya. ❤️ Our manager can help with directions and delivery or collection arrangements. 🌸"
+                );
+            } else if (
+                text.includes("joke") ||
+                text.includes("make me laugh")
+            ) {
+                tellCakeJoke();
+                return;
+            } else if (
+                text.includes("whatsapp") ||
+                text.includes("manager") ||
+                text.includes("contact")
+            ) {
+                contactManager();
+                return;
+            } else {
+                addMessage(
+                    "bot",
+                    "Ooh, tell me more! ❤️ I'm here to help with cake ideas, custom designs, budgets, and orders. I'm a cake assistant, though, not a mind reader... yet! 👀"
+                );
+            }
+
+            showOptions([
+                "Quick Help",
+                "Let's Chat 🌸",
+                "Browse Our Cakes",
+                "Design My Custom Cake",
+                "Chat with the Manager"
+            ]);
+        });
+
+        // ---------------- RESET CHAT ----------------
+
+        reset?.addEventListener("click", () => {
+            messages.replaceChildren();
+
+            answers = [];
+            questionIndex = 0;
+            selectedCake = "";
+            mode = "menu";
+
+            input.value = "";
+            input.placeholder = "Talk to your cake bestie...";
+
+            addMessage(
+                "bot",
+                "Hey, cake lover! ❤️🌸 Guess who's here? Your favourite cake magicians at Kavy Bakes! Well, technically, it's your assistant... the magician is probably busy with the frosting. We're based in Kimumu, Eldoret, Kenya, and our homemade cake prices are negotiable. ❤️ So, what's the vibe today?"
+            );
+
+            showMainMenu();
+        });
+
+        // Display the main menu when chatbot initializes.
+        showMainMenu();
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initAskKavy, {
+            once: true
+        });
+    } else {
+        initAskKavy();
+    }
+})();

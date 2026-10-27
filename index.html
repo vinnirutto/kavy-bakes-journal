@@ -1233,6 +1233,124 @@ Now let us make the celebration sweet.
 </button>
 
     </div>
+    
+
+<!-- ================= ASK KAVY CHATBOT ================= -->
+
+<div id="kb-chatbot">
+
+    <!-- Floating Chat Button -->
+    <button
+        id="kb-chat-toggle"
+        type="button"
+        aria-label="Open Ask Kavy chatbot"
+        aria-controls="kb-chat-window"
+        aria-expanded="false"
+    >
+        <span class="kb-chat-icon">♡</span>
+        <span>Ask Kavy</span>
+    </button>
+
+    <!-- Chat Window -->
+    <section
+        id="kb-chat-window"
+        role="dialog"
+        aria-label="Ask Kavy Assistant"
+        aria-hidden="true"
+    >
+
+        <!-- Header -->
+        <header class="kb-chat-header">
+
+            <div class="kb-chat-brand">
+                <span class="kb-chat-avatar">♡</span>
+
+                <div>
+                    <h2>Ask Kavy</h2>
+                    <p>Your favourite cake bestie</p>
+                </div>
+            </div>
+
+            <div class="kb-chat-header-actions">
+
+                <button
+                    id="kb-chat-reset"
+                    type="button"
+                    aria-label="Restart conversation"
+                    title="Restart conversation"
+                >↻</button>
+
+                <button
+                    id="kb-chat-close"
+                    type="button"
+                    aria-label="Close chatbot"
+                >×</button>
+
+            </div>
+        </header>
+
+        <!-- Conversation -->
+        <div
+            id="kb-chat-messages"
+            role="log"
+            aria-live="polite"
+            aria-relevant="additions"
+        >
+            <div class="kb-message kb-bot-message">
+                Hey, cake lover! ❤️🌸
+
+                Guess who's here? Your favourite cake magicians at
+                Kavy Bakes! Well, technically, it's your assistant…
+                the magician is probably busy with the frosting.
+
+                We make beautiful cakes for birthdays, weddings,
+                graduations, anniversaries, baby showers, and other
+                special moments.
+
+                We're based in Kimumu, Eldoret, Kenya, and yes,
+                we can talk about your budget too. Our homemade
+                cake prices are negotiable! ❤️
+
+                So, what's the vibe today?
+            </div>
+        </div>
+
+        <!-- Quick Help and Let's Chat options are added by JavaScript -->
+        <div
+            id="kb-chat-options"
+            aria-label="Chat options"
+        ></div>
+
+        <!-- Message Input -->
+        <form id="kb-chat-form">
+
+            <input
+                id="kb-chat-input"
+                type="text"
+                placeholder="Talk to your cake bestie..."
+                aria-label="Type your message"
+                autocomplete="off"
+            >
+
+            <button
+                id="kb-chat-send"
+                type="submit"
+                aria-label="Send message"
+            >➤</button>
+
+        </form>
+
+        <!-- Footer -->
+        <p class="kb-chat-footer">
+            Made with love by Kavy Bakes ❤️
+        </p>
+
+    </section>
+
+</div>
+
+<!-- ================= END ASK KAVY CHATBOT ================= -->
+
 
 
     <script src="script.js"></script>

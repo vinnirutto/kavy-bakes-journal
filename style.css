@@ -4918,3 +4918,540 @@ and (max-height: 600px) {
         line-height: 1.5;
     }
 }
+
+/* =========================================================
+   KAVY BAKES — ASK KAVY CHATBOT STYLES
+   Premium, warm, responsive design
+========================================================= */
+
+#kb-chatbot {
+    --kb-cream: #fffaf4;
+    --kb-cream-dark: #f5e9dc;
+    --kb-brown: #4a2f25;
+    --kb-brown-light: #745143;
+    --kb-terracotta: #b96845;
+    --kb-pink: #f4dfe3;
+    --kb-gold: #d7b56d;
+    --kb-text: #35251f;
+    --kb-muted: #8b756a;
+
+    font-family: "Poppins", "Segoe UI", sans-serif;
+    color: var(--kb-text);
+    box-sizing: border-box;
+}
+
+#kb-chatbot *,
+#kb-chatbot *::before,
+#kb-chatbot *::after {
+    box-sizing: border-box;
+}
+
+/* ================= FLOATING CHAT BUTTON ================= */
+
+#kb-chatbot #kb-chat-toggle {
+    position: fixed;
+    right: 24px;
+    bottom: 22px;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    padding: 14px 21px;
+    min-height: 52px;
+    width: auto;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 40px;
+
+    background: linear-gradient(
+        135deg,
+        var(--kb-brown),
+        var(--kb-terracotta)
+    );
+
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+
+    box-shadow: 0 7px 24px rgba(74, 47, 37, 0.28);
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#kb-chatbot #kb-chat-toggle:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 11px 28px rgba(74, 47, 37, 0.35);
+}
+
+#kb-chatbot .kb-chat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    line-height: 1;
+}
+
+/* ================= CHAT WINDOW ================= */
+
+#kb-chatbot #kb-chat-window {
+    position: fixed;
+    right: 24px;
+    bottom: 88px;
+    z-index: 99998;
+
+    display: none;
+    flex-direction: column;
+
+    width: 370px;
+    max-width: calc(100vw - 28px);
+    height: 540px;
+    max-height: calc(100dvh - 115px);
+
+    overflow: hidden;
+
+    background: var(--kb-cream);
+    border: 1px solid rgba(120, 79, 57, 0.18);
+    border-radius: 23px;
+
+    box-shadow:
+        0 18px 60px rgba(56, 35, 25, 0.22),
+        0 3px 12px rgba(56, 35, 25, 0.08);
+}
+
+#kb-chatbot #kb-chat-window.kb-chat-open {
+    display: flex;
+    animation: kb-chat-appear 0.25s ease-out;
+}
+
+@keyframes kb-chat-appear {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ================= CHAT HEADER ================= */
+
+#kb-chatbot .kb-chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    flex-shrink: 0;
+    padding: 16px;
+
+    background: linear-gradient(
+        135deg,
+        #4a2f25,
+        #704331
+    );
+
+    color: #ffffff;
+}
+
+#kb-chatbot .kb-chat-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 0;
+}
+
+#kb-chatbot .kb-chat-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+
+    background: #f4dfe3;
+    color: var(--kb-brown);
+    font-size: 25px;
+}
+
+#kb-chatbot .kb-chat-brand h2 {
+    margin: 0 0 4px;
+    color: #ffffff;
+    font-size: 17px;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+#kb-chatbot .kb-chat-brand p {
+    margin: 0;
+    color: #f2dfd3;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+#kb-chatbot .kb-chat-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#kb-chatbot .kb-chat-header-actions button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+#kb-chatbot .kb-chat-header-actions button:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* ================= MESSAGE AREA ================= */
+
+#kb-chatbot #kb-chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+
+    padding: 18px 14px 12px;
+
+    background:
+        radial-gradient(
+            circle at 100% 0,
+            rgba(244, 223, 227, 0.35),
+            transparent 35%
+        ),
+        var(--kb-cream);
+
+    scroll-behavior: smooth;
+}
+
+#kb-chatbot .kb-message {
+    max-width: 88%;
+    padding: 12px 14px;
+
+    border-radius: 17px;
+    font-size: 13px;
+    line-height: 1.65;
+
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+#kb-chatbot .kb-bot-message {
+    align-self: flex-start;
+
+    background: #ffffff;
+    color: var(--kb-text);
+
+    border: 1px solid #eee1d6;
+    border-bottom-left-radius: 5px;
+
+    box-shadow: 0 2px 7px rgba(74, 47, 37, 0.04);
+}
+
+#kb-chatbot .kb-user-message {
+    align-self: flex-end;
+
+    background: var(--kb-brown);
+    color: #ffffff;
+
+    border-bottom-right-radius: 5px;
+}
+
+/* ================= QUICK OPTIONS ================= */
+
+#kb-chatbot #kb-chat-options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+
+    flex-shrink: 0;
+    max-height: 155px;
+    overflow-y: auto;
+
+    padding: 10px 13px;
+
+    background: var(--kb-cream);
+    border-top: 1px solid #f0e4d9;
+}
+
+#kb-chatbot #kb-chat-options button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 100%;
+    min-height: 36px;
+    padding: 9px 12px;
+
+    border: 1px solid #dfc6b4;
+    border-radius: 20px;
+
+    background: #ffffff;
+    color: var(--kb-brown);
+
+    font-family: inherit;
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: center;
+
+    cursor: pointer;
+    overflow-wrap: anywhere;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+#kb-chatbot #kb-chat-options button:hover {
+    background: var(--kb-brown);
+    border-color: var(--kb-brown);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+#kb-chatbot #kb-chat-options button:active {
+    transform: scale(0.97);
+}
+
+/* ================= MESSAGE INPUT ================= */
+
+#kb-chatbot #kb-chat-form {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    flex-shrink: 0;
+    padding: 12px 13px;
+
+    background: #ffffff;
+    border-top: 1px solid #eee1d6;
+}
+
+#kb-chatbot #kb-chat-input {
+    flex: 1;
+    min-width: 0;
+    height: 43px;
+
+    padding: 0 14px;
+
+    border: 1px solid #e7d6c9;
+    border-radius: 25px;
+    outline: none;
+
+    background: #fffaf6;
+    color: var(--kb-text);
+
+    font-family: inherit;
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#kb-chatbot #kb-chat-input::placeholder {
+    color: #aa978b;
+}
+
+#kb-chatbot #kb-chat-input:focus {
+    border-color: var(--kb-terracotta);
+    box-shadow: 0 0 0 3px rgba(185, 104, 69, 0.12);
+}
+
+#kb-chatbot #kb-chat-send {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: var(--kb-terracotta);
+    color: #ffffff;
+
+    font-size: 19px;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+#kb-chatbot #kb-chat-send:hover {
+    background: var(--kb-brown);
+    transform: scale(1.05);
+}
+
+/* ================= FOOTER ================= */
+
+#kb-chatbot .kb-chat-footer {
+    flex-shrink: 0;
+    margin: 0;
+    padding: 7px 10px 10px;
+
+    background: #ffffff;
+    color: var(--kb-muted);
+
+    font-size: 10px;
+    text-align: center;
+    letter-spacing: 0.2px;
+}
+
+/* ================= ACCESSIBILITY ================= */
+
+#kb-chatbot button:focus-visible,
+#kb-chatbot input:focus-visible {
+    outline: 2px solid var(--kb-gold);
+    outline-offset: 3px;
+}
+
+/* ================= TABLETS AND PHONES ================= */
+
+@media screen and (max-width: 600px) {
+    #kb-chatbot #kb-chat-toggle {
+        right: 12px;
+        bottom: 12px;
+
+        min-height: 42px;
+        padding: 9px 13px;
+        gap: 6px;
+
+        font-size: 12px;
+    }
+
+    #kb-chatbot .kb-chat-icon {
+        font-size: 18px;
+    }
+
+    #kb-chatbot #kb-chat-window {
+        right: 8px;
+        bottom: 64px;
+
+        width: calc(100vw - 16px);
+        max-width: none;
+
+        height: min(540px, calc(100dvh - 80px));
+        max-height: calc(100dvh - 80px);
+
+        border-radius: 19px;
+    }
+
+    #kb-chatbot .kb-chat-header {
+        padding: 13px;
+    }
+
+    #kb-chatbot .kb-chat-brand h2 {
+        font-size: 16px;
+    }
+
+    #kb-chatbot #kb-chat-messages {
+        padding: 14px 11px;
+        gap: 10px;
+    }
+
+    #kb-chatbot .kb-message {
+        max-width: 92%;
+        padding: 11px 12px;
+        font-size: 12.5px;
+    }
+
+    #kb-chatbot #kb-chat-options {
+        gap: 7px;
+        max-height: 135px;
+        padding: 9px 10px;
+    }
+
+    #kb-chatbot #kb-chat-options button {
+        min-height: 35px;
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+
+    #kb-chatbot #kb-chat-form {
+        padding: 9px 10px;
+    }
+
+    #kb-chatbot #kb-chat-input {
+        height: 41px;
+        font-size: 13px;
+    }
+
+    #kb-chatbot #kb-chat-send {
+        width: 41px;
+        height: 41px;
+    }
+}
+
+/* ================= VERY SMALL PHONES ================= */
+
+@media screen and (max-width: 360px) {
+    #kb-chatbot #kb-chat-toggle {
+        right: 9px;
+        bottom: 9px;
+        min-height: 38px;
+        padding: 8px 11px;
+        font-size: 11px;
+    }
+
+    #kb-chatbot #kb-chat-window {
+        right: 5px;
+        bottom: 56px;
+        width: calc(100vw - 10px);
+        height: calc(100dvh - 68px);
+        max-height: calc(100dvh - 68px);
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    #kb-chatbot *,
+    #kb-chatbot *::before,
+    #kb-chatbot *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
