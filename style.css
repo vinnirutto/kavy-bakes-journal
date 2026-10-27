@@ -4390,28 +4390,68 @@ and (max-height: 600px) {
 }
 
 
-.final-order-btn i {
+.final-order-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
 
-    font-size: 13px;
+    width: fit-content;
+    max-width: 100%;
+    min-height: 64px;
+    padding: 12px 22px;
 
-    color:
-        #e9c2ae;
+    box-sizing: border-box;
+    border: 1px solid var(--terracotta);
+    border-radius: 12px;
+
+    background: var(--chocolate);
+    color: var(--cream);
+
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
 }
 
+.final-order-btn i {
+    flex-shrink: 0;
+    font-size: 25px;
+}
+
+.final-order-btn span {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.final-order-btn small {
+    font-size: 12px;
+    opacity: 0.85;
+}
 
 .final-order-btn:hover {
-
-    transform:
-        translateY(-3px);
-
-    background:
-        #4f3025;
-
-    box-shadow:
-        0 10px 22px
-        rgba(74,40,28,.18);
+    background: var(--terracotta);
+    transform: translateY(-2px);
 }
 
+.final-order-btn:focus-visible {
+    outline: 3px solid var(--terracotta);
+    outline-offset: 4px;
+}
+
+@media (max-width: 480px) {
+    .final-order-btn {
+        max-width: calc(100vw - 40px);
+        gap: 10px;
+        padding: 10px 15px;
+    }
+}
 
 /* =========================================================
    TO BE CONTINUED
@@ -5454,4 +5494,190 @@ and (max-height: 600px) {
         transition: none !important;
         scroll-behavior: auto !important;
     }
+}
+
+/* DESKTOP FIX — unwanted brown strip at bottom-left */
+@media (min-width: 701px) {
+    html,
+    body {
+        overflow: hidden;
+        max-width: 100%;
+    }
+
+    .site {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .book-wrapper {
+        flex-shrink: 0;
+        max-width: 100%;
+    }
+}
+
+/* =====================================================
+   DESKTOP FIX — BOTTOM-LEFT BROWN STRIP
+===================================================== */
+
+@media screen and (min-width: 701px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .site {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        height: 100dvh;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .book-wrapper {
+        width: min(94vw, 1450px);
+        min-width: 0;
+        min-height: 0;
+        flex-shrink: 1;
+    }
+
+    .book {
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .controls {
+        max-width: 100%;
+        min-width: 0;
+    }
+}
+
+/* Prevent horizontal overflow without changing mobile styling */
+
+img,
+video,
+iframe {
+    max-width: 100%;
+}
+/* FIX: FINAL WHATSAPP ORDER BUTTON OVERLAPPING */
+.final-order-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+
+    width: auto;
+    max-width: 100%;
+    min-width: 0;
+    height: auto;
+    min-height: 64px;
+
+    margin: 16px 0;
+    padding: 12px 20px;
+
+    box-sizing: border-box;
+    float: none;
+    clear: both;
+    z-index: 1;
+}
+
+.final-order-btn i {
+    flex-shrink: 0;
+}
+
+.final-order-btn span {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.final-order-btn small {
+    display: block;
+    line-height: 1.4;
+}
+
+@media (max-width: 700px) {
+    .final-order-btn {
+        max-width: calc(100% - 12px);
+        margin: 12px 6px;
+        padding: 10px 14px;
+        gap: 10px;
+    }
+}
+/* =====================================================
+   DESKTOP ONLY — FINAL PAGE SPACING FIX
+   Keeps the order button clear of the continuation text.
+   Mobile styles above remain unchanged.
+===================================================== */
+@media screen and (min-width: 701px) {
+    .final-page .final-inner {
+        justify-content: flex-start;
+        padding: 105px 45px 135px;
+        box-sizing: border-box;
+    }
+
+    .final-page .final-eyebrow {
+        top: 45px;
+    }
+
+    .final-page .final-content {
+        width: min(100%, 520px);
+        margin: auto 0 0;
+        transform: translateY(-35px) scale(0.84) !important;
+        transform-origin: center center;
+        z-index: 5;
+    }
+
+    .final-page .final-order-btn {
+        position: relative;
+        display: inline-flex;
+        margin-top: 18px;
+        flex-shrink: 0;
+        z-index: 6;
+    }
+
+    .final-page .continued {
+        left: 50%;
+        bottom: 28px !important;
+        width: 100%;
+        transform: translateX(-50%);
+        z-index: 2;
+    }
+
+    .final-page .final-contact {
+        bottom: 64px;
+        z-index: 3;
+    }
+}
+
+/* PC ONLY — MAKE FINAL ORDER BUTTON CLICKABLE */
+@media screen and (min-width: 701px) {
+
+    .final-page .final-content {
+        position: relative;
+        z-index: 20 !important;
+        pointer-events: none;
+    }
+
+    .final-page .final-content .final-order-btn {
+        position: relative;
+        z-index: 21 !important;
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+
+    .final-page .final-order-btn i {
+        pointer-events: none;
+    }
+
+    .final-page .continued {
+        z-index: 5;
+    }
+
 }
